@@ -1,0 +1,2069 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0072)http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><HTML 
+dir="ltr" xmlns:expr="http://www.google.com/2005/gml/expr" xmlns:data="http://www.google.com/2005/gml/data" 
+xmlns:b="http://www.google.com/2005/gml/b" 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+ <LINK title="9lessons is a programming blog" href="http://feeds2.feedburner.com/9lesson" 
+rel="alternate" type="application/rss+xml"> <LINK href="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/css.css" 
+rel="stylesheet" type="text/css"> 
+<META name="msvalidate.01" content="642636B8B26344A69F5FA5C22A629A16"> 
+<TITLE>Create a RESTful Services API in PHP.</TITLE> 
+<META name="description" content=" How to do Create a RESTful Services API in PHP.. Tutorial focused on Programming, Jquery, Ajax, PHP, Demos, Web Design, Javascript, Software and MySQL"> 
+<META name="keywords" content="java script, web development, web design, web programming, jquery ajax, ajax php, jquery ajax demos, jquery demos, regular expression, ajax demos, ajax programming, tutorials, php script, ajax tutorial, ajax examples, jquery tutorial, database, mysql, web database development, blogger, google ajax api, google visualization, google app, rss, technology, coding, code, examples, php programming, facebook scripts, twitter API, facebook like, twitter scripts, form validation, hosting, form submit, validation, application development, software, free scripts, free hosting, sql script, programming, jsp, tomcat, SMTP Mail"> 
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<SCRIPT type="text/javascript">(function() { var a=window,b="jstiming",d="tick";var e=function(c){this.t={};this.tick=function(c,p,h){h=void 0!=h?h:(new Date).getTime();this.t[c]=[h,p]};this[d]("start",null,c)},f=new e;a.jstiming={Timer:e,load:f};if(a.performance&&a.performance.timing){var g=a.performance.timing,j=a[b].load,k=g.navigationStart,l=g.responseStart;0<k&&l>=k&&(j[d]("_wtsrt",void 0,k),j[d]("wtsrt_","_wtsrt",l),j[d]("tbsd_","wtsrt_"))}
+try{var m=null;a.chrome&&a.chrome.csi&&(m=Math.floor(a.chrome.csi().pageT),j&&0<k&&(j[d]("_tbnd",void 0,a.chrome.csi().startE),j[d]("tbnd_","_tbnd",k)));null==m&&a.gtbExternal&&(m=a.gtbExternal.pageT());null==m&&a.external&&(m=a.external.pageT,j&&0<k&&(j[d]("_tbnd",void 0,a.external.startE),j[d]("tbnd_","_tbnd",k)));m&&(a[b].pt=m)}catch(n){};a.tickAboveFold=function(c){var i=0;if(c.offsetParent){do i+=c.offsetTop;while(c=c.offsetParent)}c=i;750>=c&&a[b].load[d]("aft")};var q=!1;function r(){q||(q=!0,a[b].load[d]("firstScrollTime"))}a.addEventListener?a.addEventListener("scroll",r,!1):a.attachEvent("onscroll",r);
+ })();</SCRIPT>
+ 
+<META name="MSSmartTagsPreventParsing" content="true"> 
+<META name="GENERATOR" content="MSHTML 10.00.9200.16458"> <LINK href="http://www.9lessons.info/favicon.ico" 
+rel="icon" type="image/x-icon"> <LINK href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" 
+rel="canonical"> <LINK title="9lessons Programming Blog - Atom" href="http://www.9lessons.info/feeds/posts/default" 
+rel="alternate" type="application/atom+xml"> <LINK title="9lessons Programming Blog - RSS" 
+href="http://www.9lessons.info/feeds/posts/default?alt=rss" rel="alternate" 
+type="application/rss+xml"> <LINK title="9lessons Programming Blog - Atom" href="http://www.blogger.com/feeds/992226187759619576/posts/default" 
+rel="service.post" type="application/atom+xml"> <LINK title="RSD" href="http://www.blogger.com/rsd.g?blogID=992226187759619576" 
+rel="EditURI" type="application/rsd+xml"> <LINK title="9lessons Programming Blog - Atom" 
+href="http://www.9lessons.info/feeds/6889563226869525804/comments/default" rel="alternate" 
+type="application/atom+xml"> <LINK href="https://lh6.googleusercontent.com/-u9hFxEK0OS8/T6a9yHaniHI/AAAAAAAAF_Y/prEsvdWrNtI/s72-c/rest.png" 
+rel="image_src"> <!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]--> 
+<LINK href="http://srinivas.tamada.googlepages.com/favegg.gif" rel="icon" type="image/x-icon"> 
+<LINK href="http://srinivas.tamada.googlepages.com/favegg.gif" rel="shortcut icon" 
+type="image/x-icon"> 
+<META name="alexaVerifyID" content="6AjQa-NbwaKsfO-CAR2zEP4InUc"> 
+<META name="author" content="Srinivas Tamada"> 
+<META name="google-site-verification" content="p7yyWkGI8UUrpr3YilZbOff9lHb5U16IbbjPop8Yd60"> 
+<META content="1025751018" property="fb:admins"> 
+<META name="copyright" content="Copyright (c) 2008-2013 Srinivas Tamada"> 
+<META name="y_key" content="3eee94c87da34039"> 
+<META name="y_key" content="539b42ade3fcac3c"> 
+<META name="google-site-verification" content="j_NzAv9w2MauepXWZ9ggPupfW5Mr5gkudpn-Wu0AZF0"> 
+<META name="msvalidate.01" content="F2FEEF3D9FA54697BBAF9E08A80D3483"> 
+<META name="verify-v1" content="mn2bdKJzo8xQpOyAjIpIng4KGjMVZKuJr8kXnCdMpPQ="> 
+<META name="msvalidate.01" content="D0FD91CF47B81A0444FA5AB6BFF9CBD4"> 
+<META name="detectify-verification" content="54fc911da757adcd5e983a05db404b2d"> 
+<LINK href="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/3950009988-widget_css_bundle.css" 
+rel="stylesheet" type="text/css"> <LINK href="//www.blogger.com/dyn-css/authorization.css?targetBlogID=992226187759619576&amp;zx=e3ca7152-a902-4883-b671-7a2f90df28b2" 
+rel="stylesheet" type="text/css"> 
+<STYLE id="page-skin-1" type="text/css"><!--
+/*
+
+--></STYLE>
+ 
+<STYLE type="text/css">
+html { -webkit-font-smoothing: antialiased;}
+* {
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	}
+b{ font-weight:bold}
+body{ border:0;margin:0;padding:0,font-smooth:always; font:.75em/1.73em Arial,Helvetica,sans-serif;font-weight:500;background:url(https://lh6.googleusercontent.com/-obBgN3vk1qs/TlOaB41zkcI/AAAAAAAAFJs/a34UV_6PfLw/grids.gif)}#navbar-iframe{display:none;height:0px;}.avatar-image-container img{background:url(http://lh4.ggpht.com/_N9kpbq3FL74/SyY1onvH8fI/AAAAAAAADEw/ww3q06q0cxI/egg.png) no-repeat;width:35px;height:35px;border:1px solid #dedede}.comment-form{margin-left:45px}a:link,a:visited{color:#176092;text-decoration:none}a:hover{text-decoration:underline}form{border:0;margin:0}form{font-size:12px}form,input{padding:0}h1,h2,h3,h4,h5{margin:0;border:0;padding:0;color:#313029;font-weight:normal}h1,h2{color:#333;font-family:Helvetica,Arial;font-weight:bold;line-height:1.1em;padding-bottom:5px;text-shadow:0 1px 0 #FFF;font-size:36px}h1 a:link,h1 a:visited{color:#333;text-decoration:none}h1 a:hover{text-decoration:none}h2 a:link,h2 a:visited{color:#333;text-decoration:none}h2 a:hover{background-color:#f2f2f2;text-decoration:none}h3{font-size:13px;line-height:32px;color:#000;font-weight:bold;font-family:Helvetica,Arial,sans-serif}h4{font-size:12px;font-weight:bold;color:#40403b;margin-bottom:14px}h5{font-size:20px;line-height:22px;font-family:Helvetica,Arial,sans-serif;display:block;padding-bottom:10px;color:#000}i{color:#000;background-color:#C7F464;padding-left:2px;padding-right:2px}.live{font-style:italic;color:#000;font-family:georgia;background-color:#DAF1F7;border-bottom:solid 1px #dedede;border-right:solid 1px #dedede;padding-left:2px;padding-right:2px}.face{float:left;border-right:solid 1px #dedede;border-bottom:solid 1px #dedede;padding:4px;background-color:#fff;margin-right:5px;width:75px}.facee{float:left;width:80px;margin-right:5px}.sri{border:1px solid #CCC;padding:9px;background:#fff}.srii{border:1px solid #dedede;box-shadow:0px 0px 8px #000;-moz-box-shadow:0px 0px 8px #000;-webkit-box-shadow:0px 0px 8px #000}.people{padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:15px;color:#333;font-family:Georgia;padding-bottom:10px;margin-bottom:10px;border-bottom:solid 1px #fff} .people a{color:#006699 !important;} .people a:hover{color:#006699 !important;}#lang img{border:#555 solid 1px;margin-left:4px}ul,li{margin:0;border:0;padding:0}ul{margin-bottom:20px} #sideside li{list-style:none;display:block}div.code{font-family:Courier,monospace,Courier New;font-size:13px;color:#000;border:dashed 2px #dedede;padding:10px;line-height:16px;width:547px;word-wrap:break-word;}div.code1{font-family:"Courier New",Courier,monospace;font-size:13px;color:#000;border:dashed 2px #dedede;background:#fff;padding:10px;line-height:16px}input.gsc-input{padding:5px;color:#333;font-weight:bold;border:solid 2px #333}input.gsc-search-button{background-color:#00990c;padding:4px 10px 4px 10px;color:#fff;border:solid 1px #333;cursor:pointer}.gsc-branding-user-defined,.gsc-branding-text,.gsc-branding-img{height:0px;display:none}#container{width:900px;margin:0 auto;margin-bottom:20px}#main-container{background:#FFF;padding:0 12px;width:auto;padding-bottom:24px}#nav-bar{height:46px}#top-header{font-size:13px;
+	
+}
+#egglabs-header{margin:0 auto;padding:0px;width:900px;height:110px}.readmorediv{border-bottom:dashed #dedede 1px;padding-top:20px;paddin-right:20px;padding-bottom:20px;margin-bottom:20px;text-align:left}.readmoretext{text-decoration:underline;font-weight:bold;color:#069}.centerclass{text-align:center}#spon{padding-left:10px;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;overflow:auto;background-color:#Fff}.buylink{padding:5px;font-size:12px;color:#000;border:solid 2px #dedede;background:url() right no-repeat;background-color:#fff}.inbuylink{font-size:11px;color:#b2b2b2;margin-right:6px;margin-left:6px}#demo{border:#000 solid 2px;padding:4px;background-color:#dedede;font-size:13px}#demo a{color:#000;text-decoration:none}#demo a:hover{color:#000;text-decoration:none}#main_page{width:856px;padding-top:20px;background:#FFF}*html #main_page{overflow:auto}#main_left{line-height:18px;margin-right:15px}#main_left em{font-style:normal;background:#c7e6f2}#main_right{width:354px;float:left;font-size:11px}#main_right .section-w{border:solid 4px #e0dfd0;border-top:none;background:#f4f4e9;padding:14px;margin-bottom:20px}#main_right .section-w a{text-decoration:none}#main_right .section-w a:hover{text-decoration:underline}.sidebar-section{font-size:11px;line-height:16px;padding:6px 0;margin-bottom:20px}.sidebar-section li{padding-bottom:4px;border-bottom:solid 1px #e0dfd0;margin-bottom:4px}.sidebar-section a:link,.sidebar-section a:visited{text-decoration:none}.sidebar-section li a:hover{text-decoration:underline;color:#555}.deleted-comment{font-style:italic;color:gray}.section-links{font-size:11px;line-height:16px;margin-bottom:5px;padding:4px 10px;color:#000;margin-bottom:10px;border-bottom:#fff solid 1px}.section-links li{padding-bottom:6px;border-bottom:solid 1px #d8d8d8;margin-bottom:6px}.section-links a:link,.section-links a:visited{text-decoration:none;color:#000}.section-links li a:hover{text-decoration:underline;color:#000}#small-feed{font-size:11px}#recent-entries li,div.twitter_list ul li,#small-feed ul li,#categories li{padding-left:14px;width:260px}#recent-entries a:link,#recent-entries a:visited,.site-reviews a:link,.site-reviews a:visited,#categories a:link,#categories a:visited{text-decoration:none;color:#333}div.twitter_list ul li a:link,div.twitter_list ul li a:visited{text-decoration:none;color:#80c8e5}#recent-entries li a:hover,#categories li a:hover,.site-reviews li a:hover{text-decoration:underline;color:#069}div.twitter_list ul li a:hover{text-decoration:underline;color:#80c8e5}#TwitterCounter{float:left;width:100px;height:30px}div.twitter_list{color:#FFF;background-color:#333;padding:10px 7px 1px 7px}ul#twitter_update_list li{border:none;list-style:none}.site-reviews li{border:none}#container-footer{height:80px}#container-footer2{}#footer{font-size:11px;color:#000;padding:20px 0px;border-top:3px #333 solid;width:900px;margin:0 auto}#footer a:link,#footer a:visited{color:#176092;text-decoration:underline}#navbar{display:none;height:0;visibility:hidden}.date-header{color:#999;font-family:Helvetica,Arial,sans-serif;text-transform:uppercase;font-size:11px;margin-bottom:12px;margin-top:10px;padding:0px}.bigInt{text-shadow: 0 1px 0 white;font-size:16px;color:#1e1e1e;line-height:24px;font-family:'Muli',Helvetica,Arial,Georgia,Times New Roman;text-align:justify}#big{font-size:1.9em;line-height:36px;color:#000;letter-spacing:-0.05em;padding-top:12px;}#big a:link,#big a:visited{color:#000;text-decoration:none}#big a:hover{text-decoration:underline}div.big{text-shadow: 0 1px 0 white;font-size:1.9em;line-height:36px;color:#000;letter-spacing:-0.05em;padding-top:12px;}div.big a:link,div.big a:visited{color:#000;text-decoration:none}div.big a:hover{text-decoration:underline}#biglink{font-size:1.5em;line-height:36px;color:#000;letter-spacing:-0.05em;padding-top:12px;font-family:Arial,Georgia,Times New Roman,Times,serif}.blog-pager{font-size:12px}.blog-pager a{color:#80c8e5}.blog-pager-newer-link,.blog-pager-older-link{display:block;float:left;padding:6px 10px;text-align:center;font-size:2.4em;font-weight:bold;margin-right:8px}.home-link{display:block;float:left;padding:6px 10px;text-align:center;color:#333;font-size:2.4em;font-weight:bold;margin-right:8px}.status-msg-wrap-n{padding:0px;margin:0px;margin-bottom:40px}.status-msg-body-n{text-align:center;width:auto;display:block;font-size:11px;height:24px;margin-bottom:30px;border:1px solid #dedede;border-top:none;line-height:24px;background-color:#EFEFEF}.post-body-n{font-family:'Muli',Arial,Times New Roman,Times,Arial,serif;font-size:15px;line-height:24px;color:#1e1e1e;}.post-body-n a:link,.post-body-n a:visited{text-decoration:none;color:#176092}.post-body-n a:hover{text-decoration:underline}.comment-author{color:#000;font-size:14px;padding:4px;font-weight:bold;text-decoration:none}.comment-author a:link,.comment-author a:visited,.comment-author a:hover{font-weight:bold;color:#000;padding-bottom:2px;text-decoration:none}.comment-footer a:link,.comment-footer a:visited{font-size:12px;font-weight:bold;color:#FFF;text-align:center;display:block;clear:both;width:137px;height:36px;line-height:36px;background:url(http://lh4.ggpht.com/_N9kpbq3FL74/SZF4bQLpLHI/AAAAAAAABDU/l6FPOJh1Dgc/letter2.png) no-repeat}.comment-timestamp{font-size:11px;color:#333}.comment-timestamp a:link,.comment-timestamp a:visited{font-size:11px;color:#999;background:none;width:auto;height:auto;text-align:left;font-weight:normal}.post-comment-link{}a.comment-link{font-weight:bold}dd{margin:0;border:0;padding:0;padding:0 10px;width:445px}dd.comment-body{color:#000;border:dashed 2px #48B1D9;border-bottom:none}dd.comment-body a{color:#DF3D82;text-decoration:none}dd.comment-body a:hover{color:#DF3D82;text-decoration:none}dd.comment-body p{border:0;padding:0;margin:0;padding:10px 0}dd.comment-footer{margin-bottom:10px;border:dashed 2px #48B1D9;border-top:none}dd.au-body{color:#000;border:dashed 2px #DF3D82;border-bottom:none;}dd.au-body a{color:#0081b3;text-decoration:none}dd.au-body a:hover{color:#0081b3;text-decoration:none}dd.au-body p{border:0;padding:0;margin:0;padding:10px 0}.comment b{font-family:Georgia,Times New Roman,Times,serif;font-size:14px}.spacer{clear:both;height:10px;display:block}.tag{font-size:11px;padding-top:5px;color:#999;margin-bottom:10px}.post-tag{font-family:Helvetica,Arial,sans-serif;margin-bottom:10px}.post-shr{font-family:Helvetica,Arial,sans-serif;font-size:13px;margin-bottom:10px;font-weight:bold}.post-shr a:link,.post-shr a:visited{color:#5FBBDE;text-decoration:none;font-weight:bold}.feedinput{padding:4px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#333;font-weight:bold;border:solid 1px #dedede}*html .feedinput{padding:0;height:23px}.feed-small-right,.small-right{font-size:11px;float:right;font-weight:bold;background:url(http://lh4.ggpht.com/_N9kpbq3FL74/Sg0AJYQxhZI/AAAAAAAABow/narKD6sp8Sc/feed.png) right 8px no-repeat;padding-right:20px}.small-right{background:none}.fc-small-right{font-size:11px;float:right;font-weight:bold;background:url(http://lh5.ggpht.com/_N9kpbq3FL74/Sg0AJIA_s0I/AAAAAAAABoo/qwTP3H5kLrA/facebook.png) right 8px no-repeat;padding-right:20px}.t-small-right{font-size:11px;float:right;font-weight:bold;background:url(http://lh3.ggpht.com/_TqPdHmAEwTM/SWklzoPbdgI/AAAAAAAADZU/iThH7umswds/teewthis.png) right 8px no-repeat;padding-right:27px}.labs-small-right{font-size:11px;float:right;font-weight:bold}.share-twitthis{margin-left:10px;border-left:solid 1px #DEDEDE;padding-left:38px;font-size:11px;line-height:18px;float:left;background:url(http://lh3.ggpht.com/_N9kpbq3FL74/Sw-e9u4ZzFI/AAAAAAAAC-o/16VVQGQjhZ0/teewthis.png)8px top no-repeat}#recent-entries li,.site-reviews li,div.twitter_list ul li,#categories li,#small-feed ul li,.sharepost ul-li{padding-bottom:6px;border-bottom:solid 1px #DEDEDE;margin-bottom:6px}#recent-entries li,div.twitter_list ul li,#small-feed ul li,#categories li{background:url(http://lh5.ggpht.com/_N9kpbq3FL74/SdcFDPmBRrI/AAAAAAAABV0/0AEmsey_sgU/bull.png) no-repeat left 5px;padding-left:10px}.comment{background:url(http://lh3.ggpht.com/_N9kpbq3FL74/SiUh-MmdPGI/AAAAAAAABvs/9MN3GO2uCqc/comment.png) no-repeat left top;padding-left:28px;font-size:11px;line-height:18px;float:left}.comment a:link,.comment a:visited{color:#000}.share-delicious{background:url(http://lh5.ggpht.com/srinivas.tamada/SPmJ9nL1fMI/AAAAAAAAAgo/0emzkauyMes/delicious.png) 10px top no-repeat;margin-left:10px;border-left:solid 1px #DEDEDE;padding-left:30px;font-size:11px;line-height:18px;float:left}#footer{margin:0 auto}.save-delicious{line-height:25px;border:none;background:url(http://lh5.ggpht.com/srinivas.tamada/SPmJ9nL1fMI/AAAAAAAAAgo/0emzkauyMes/delicious.png) left no-repeat;padding:0 10px 0 20px;font-size:11px;margin-bottom:20px}.save-delicious a:link,.save-delicious a:visited{border:none;text-transform:none}.save-delicious b{color:#000;font-family:Helvetica,Arial,sans-serif;,Times,serif;font-size:14px}.profileImage{float:left;margin:3px 6px 2px 0px;background:#FFF;padding:4px}.ads{padding-top:5px;float:right;margin-left:5px}.tweet{float:left;height:62px;padding-top:5px}.cen{text-align:left}.showpageArea a{text-decoration:underline;float:left}.showpageNum a{text-decoration:none;border:1px solid #333;margin:0 4px;padding:3px 7px;background-color:#80c8e5;font-weight:bold;color:#333;float:left}.gap{margin-right:0px}.showpageNum a:hover{border:1px solid #333;background-color:#fff;float:left}.showpagePoint{color:#000;text-decoration:none;margin:0 4px;float:left;font-weight:bold;padding:3px}.showpageOf{text-decoration:none;padding:3px;margin:0 4px 0 0;display:none;float:left}.showpage a{text-decoration:none;border:1px solid #333;padding:3px;margin:0 4px;font-weight:bold;float:left;color:#000}.showpage a:hover{text-decoration:none;background-color:#f2f2f2}.showpageNum a:link,.showpage a:link{text-decoration:none;color:#000;float:left}#ravi_profile{width:500px;height:100px;border:1px solid #dcdcdc;background-color:#f9f9f9;font:bold 12px "Trebuchet MS",Verdana,Arial}.ravi_pic{float:left;margin:6px}.ravi_pic img{border:4px solid #fff}.ravi_details{float:left;border-right:1px solid #dcdcdc;padding:0 15px 10px 10px;margin-top:10px}.ravi_contact{float:left;margin-top:10px;padding:0 0 0 15px}.ravi_facebook,.ravi_facebook:hover{color:#3c5a98;font-weight:700;font-size:16px;text-decoration:none;margin-top:5px}.ravi_twitter,.ravi_twitter:hover{color:#29c9ff;font-weight:700;font-size:16px;text-decoration:none;margin-top:5px}.ravi_mailto,.ravi_mailto:hover{color:#000}.adhere{background-color:#fff}@-webkit-keyframes rotate-star{0%{-webkit-transform:rotate(0) scale(1)}50%{-webkit-transform:rotate(360deg) scale(2)}100%{-webkit-transform:rotate(720deg) scale(1)}}#buyselladss_div a:hover img{-webkit-animation-name:rotate-star;-webkit-animation-duration:500ms;-webkit-animation-iteration-count:1;-webkit-animation-timing-function:ease-out}.shadee{box-shadow:0px 0px 18px #000;-moz-box-shadow:0px 0px 18px #000;-webkit-box-shadow:0px 0px 18px #000}.feedrss{background-color:#80c8e5;border:solid 3px #dedede;padding-right:7px}#top-header div.menu{overflow:hidden;height:2.5em;margin:0;padding:0;background-color:#162336}.clear-both{clear:both}#top-header div.menu-subvert{overflow:hidden;height:2.5em;background-color:#325B6D}.container{overflow:hidden;width:100%}#top-header ul.menu{width:900px;margin:0 auto;padding:0 1em;display:block}#top-header ul.menu li{font-weight:bold;float:left;margin:0;padding:.65em 0;list-style-image:none;list-style:none}#top-header ul.menu li a:hover{text-decoration:none;color:#80c8e5}#top-header ul.menu a{padding:0 .94em;color:white;font-size:93%;border-right:1px solid #2A3659}#top-header div.menu-ads{width:900px;margin:0 auto}.post-tag a:hover{text-decoration:none;background-color:#dedede}.post_tag a{background-color:#80C8E5;color:#000 !important;text-decoration:none}.tagstyle{display:inline;padding:2px 6px;font-weight:normal;font-size:12px;background-color:#80C8E5;-moz-border-radius:5px;-webkit-border-radius:5px;white-space:nowrap;color:#000 !important;text-decoration:none;text-transform:uppercase;margin-right:10px}#related-posts{float:left;width:540px;margin-top:20px;font-size:13px}#related-posts .widget{list-style-type:none;margin:5px 0 5px 0;padding:0}#related-posts .widget h2,#related-posts h2{font-size:20px;font-weight:normal;margin:5px 7px 0;padding:0 0 5px}#related-posts a{text-decoration:none}#related-posts a:hover{text-decoration:underline}#related-posts ul{border:medium none;margin-top:10px;padding:0}#related-posts ul li{display:block;margin:0;padding-top:0;padding-right:0;padding-bottom:1px;margin-bottom:5px;line-height:2em;border-bottom:1px dotted #ccc}.topbannerad{padding:10px; text-align:center;background-color:#f5f5f5;border-bottom:2px solid #ccc;}.countsocial{width:330px;padding-top:10px}.gs-title{color:#006699}.socialicons{border-bottom:1px solid #f5f5f5;border-top:1px solid #f5f5f5;padding-top:5px;height:25px}.count_buttons{margin-right:18px;float:left;width:45px}
+input.gsc-input {
+  padding: 4px !important;
+  border: 1px solid #333 !important;
+}
+#comments{font-family:'Muli',Helvetica,Arial,Georgia,Times New Roman}.logoimg{margin-top:30px;margin-bottom:10px}.logosocial{margin-bottom:20px;margin-left:10px}.logofacebook{border:none;overflow:hidden;width:95px;height:21px}.searchgoogletop{height:56px;float:right;margin-top:0px;text-align:right;widht:400px}.search_google{float:right;margin-top:25px;text-align:right}#cse-search-form{width:350px}.home{border-left:1px solid#2A3659}.menu-ads{padding:7px 0px 0px 13px}.fixed_table{table-layout:fixed}.googleadsbig{width:500px}#cse{width:100%}.socialbuttonspace{float:left;margin-left:10px}.fblike{border:none;overflow:hidden;width:80px;height:20px}.m15top{margin-top:15px}.fbcount{border:none;overflow:hidden;width:60px;height:70px}.displaynone{display:none}.font12{font:12px}.comment_box{font-size:16px;font-weight:bold;float:left;margin-right:10px}.cpright{float:left;color:#000;margin-left:10px;padding-top:6px}#comments_block{font-size:13px;color:#333333}.counterstat{width:900px;margin:0 auto;font-weight:bold;text-align:right}.comment_footer{border:dashed 2px#DF3D82;border-top:none}.twitter_list{overflow:hidden;word-wrap:break-word;margin-top:5px}.fblikeme{border:none;overflow:hidden;width:260px;height:255px}.side_box{padding:10px;background-color:#f2f2f2}.nametitle{font-size:13px;font-weight:bold}.plusplus{float:right;width:28px;height:28px}.plusimg{border:0;width:28px;height:28px}
+.socialspace{float:left;margin-left:10px;} .fbtopbutton{ position: absolute;margin-top: -23px;margin-left: 61px;}.blackline{border:solid 1px #333}
+
+blockquote {
+margin: 20px;
+padding: 0 0 0 14px;
+color: #666;
+border-left: 2px solid #999;
+}
+blockquote {
+display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 40px;
+-webkit-margin-end: 40px;
+}
+</STYLE>
+ <!--[if IE 6]> <style type="text/css"> #nav li a{font-size:11px;font-weight:bold;color:#fff; padding:7px 12px 7px 12px; display:block; height:26px; width:70px } #nav li:hover { color:#fff; } </style> <![endif]--> 
+<SCRIPT type="text/javascript">
+//<![CDATA[
+var relatedTitles = new Array();
+var relatedTitlesNum = 0;
+var relatedUrls = new Array();
+function related_results_labels(json) {
+for (var i = 0; i < json.feed.entry.length; i++) {
+var entry = json.feed.entry[i];
+relatedTitles[relatedTitlesNum] = entry.title.$t;
+for (var k = 0; k < entry.link.length; k++) {
+if (entry.link[k].rel == 'alternate') {
+relatedUrls[relatedTitlesNum] = entry.link[k].href;
+relatedTitlesNum++;
+break;
+}
+}
+}
+}
+function removeRelatedDuplicates() {
+var tmp = new Array(0);
+var tmp2 = new Array(0);
+for(var i = 0; i < relatedUrls.length; i++) {
+if(!contains(tmp, relatedUrls[i])) {
+tmp.length += 1;
+tmp[tmp.length - 1] = relatedUrls[i];
+tmp2.length += 1;
+tmp2[tmp2.length - 1] = relatedTitles[i];
+}
+}
+relatedTitles = tmp2;
+relatedUrls = tmp;
+}
+function contains(a, e) {
+for(var j = 0; j < a.length; j++) if (a[j]==e) return true;
+return false;
+}
+function printRelatedLabels() {
+var r = Math.floor((relatedTitles.length - 1) * Math.random());
+var i = 0;
+document.write('<ul>');
+while (i < relatedTitles.length && i < 10) {
+document.write('<li><a href="' + relatedUrls[r] + '">' + relatedTitles[r] + '</a></li>');
+if (r < relatedTitles.length - 1) {
+r++;
+} else {
+r = 0;
+}
+i++;
+}
+document.write('</ul>');
+
+}
+//]]>
+</SCRIPT>
+ <LINK href="https://plus.google.com/104100007347037324968" rel="publisher"> 
+<SCRIPT type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</SCRIPT>
+</HEAD>
+<BODY> 
+<DIV class="navbar section" id="navbar">
+<DIV class="widget Navbar" id="Navbar1">
+<SCRIPT type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </SCRIPT>
+ 
+<DIV id="navbar-iframe-container"></DIV>
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/plusone.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+        gapi.load("iframes-styles-bubble", function() {
+          if (window.iframes && iframes.open) {
+            iframes.open(
+                '//www.blogger.com/navbar.g?targetBlogID\75992226187759619576\46blogName\759lessons+Programming+Blog\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75BLUE\46layoutType\75LAYOUTS\46searchRoot\75http://www.9lessons.info/search\46blogLocale\75en\46v\0752\46homepageUrl\75http://www.9lessons.info/\46targetPostID\0756889563226869525804\46blogPostOrPageUrl\75http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html\46vt\75-6764581640547641580',
+                {
+                  container: "navbar-iframe-container",
+                  id: "navbar-iframe"
+                },
+                {
+                });
+          }
+        });
+      </SCRIPT>
+
+<SCRIPT type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</SCRIPT>
+ </DIV></DIV>
+<DIV id="top-header">
+<DIV id="egglabs-header">
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD width="220"><A title="9lessons Programming Blog" href="http://www.9lessons.info/"><IMG 
+      class="logoimg" alt="9lessons programming blog " src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/new9lessonsx.png" 
+      border="0"></A> </TD>
+    <TD class="countsocial" valign="bottom">
+      <DIV class="logosocial"><SPAN class="gap"><g:plusone size="medium" href="http://www.9lessons.info"></g:plusone></SPAN><SPAN 
+      class="gap"><A class="twitter-share-button" href="http://twitter.com/share" 
+      data-via="9lessons" data-url="http://www.9lessons.info" data-text="9lessons Programming Blog" 
+      data-count="horizontal"></A></SPAN><SPAN class="gap"> <IFRAME class="logofacebook" 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/navbar.htm" 
+      frameborder="0" scrolling="no" allowtransparency="true"></IFRAME> </SPAN> 
+      </DIV></TD>
+    <TD>
+      <DIV class="searchgoogletop">
+      <DIV class="search_google">
+      <DIV id="cse-search-form"><IMG alt="Loading Search" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/ajax.gif"></DIV></DIV></DIV><SPAN 
+      class="fbtopbutton"><A title="Invite Your Facebook Friends" onclick="FacebookInviteFriends();" 
+      href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#fbinvites" 
+      rel="nofollow"><IMG style="border: 0px currentColor;" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/bringfriends.png"></A> 
+      </SPAN> </TD></TR></TBODY></TABLE></DIV>
+<DIV class="menu clear-both">
+<UL class="menu">
+  <LI><A title="Tutorials" class="home" href="http://www.9lessons.info/2008/08/table-of-contents.html">Tutorials</A></LI>
+  <LI><A title="Jquery ajax php mysql projects" href="http://www.9lessons.info/2008/08/jquery-ajax-and-php-projects-9lessons.html"> 
+  Projects</A></LI>
+  <LI><A title="Jquery Tutorials demos" href="http://www.9lessons.info/search/label/jQuery?max-results=4">JQUERY</A></LI>
+  <LI><A title="Facebook style wall script" href="http://www.9lessons.info/2011/05/facebook-wall-script-with-php-and.html"> 
+  Wall Script</A></LI>
+  <LI><A title="Facebook like Tutorials" href="http://www.9lessons.info/search/label/Facebook?max-results=4">Facebook</A></LI>
+  <LI><A title="Twitter API Tutorials" href="http://www.9lessons.info/search/label/Twitter%20API?max-results=4">Twitter 
+  API</A></LI>
+  <LI><A title="Most Popular Tutorials" href="http://www.9lessons.info/2008/08/most-popular-articles.html">Popular</A></LI>
+  <LI><A title="Request Tutorial" href="http://www.9lessons.info/p/request-tutorials-here.html">Request 
+  Tutorial</A></LI>
+  <LI><A title="Demos" href="http://demos.9lessons.info/">Demos</A></LI>
+  <LI><A title="FGLogin" href="http://www.fglogin.com/" 
+  rel="nofollow">Facebook-Google Login</A></LI></UL></DIV>
+<DIV class="menu-subvert container">
+<DIV class="menu-ads">
+<DIV class="section" id="addsections3">
+<DIV class="widget AdSense" id="AdSense2">
+<DIV class="widget-content">
+<SCRIPT type="text/javascript"><!--
+google_ad_client="pub-6904774409601870";
+google_ad_host="pub-1556223355139109";
+google_ad_width=728;
+google_ad_height=15;
+google_ad_format="728x15_0ads_al_s";
+google_ad_host_channel="0001+S0020+L0006";
+google_color_border="325B6D";
+google_color_bg="325B6D";
+google_color_link="FFFFFF";
+google_color_url="008000";
+google_color_text="000000";
+//--></SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/show_ads.js" type="text/javascript"></SCRIPT>
+ 
+<DIV class="clear"></DIV><SPAN class="widget-item-control"><SPAN class="item-control blog-admin"><A 
+title="Edit" class="quickedit" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense2"));' 
+href="http://www.blogger.com/rearrange?blogID=992226187759619576&amp;widgetType=AdSense&amp;widgetId=AdSense2&amp;action=editWidget&amp;sectionId=addsections3" 
+target="configAdSense2"><IMG width="18" height="18" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/icon18_wrench_allbkg.png"> 
+</A> </SPAN> </SPAN> 
+<DIV class="clear"></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV id="container">
+<DIV class="wallbanner"><A class="block" href="http://wall.9lessons.info/" rel="nofollow"><IMG 
+alt="Wall Script" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/wallbanner.gif" 
+border="0"> </A> </DIV>
+<TABLE width="100%" class="fixed_table" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD valign="top">
+      <DIV id="main_left"><!-- Google ads --> 
+      <DIV class="googleadsbig"><!-- Google Custom Search Element --> 
+      <DIV id="cse"></DIV></DIV>
+      <DIV class="spacer"></DIV>
+      <DIV class="section" id="main_s">
+      <DIV class="widget Blog" id="Blog1">
+      <DIV class="blog-posts hfeed"><!-- google_ad_section_start --> 
+      <DIV class="date-header">Monday, May 14, 2012 </DIV>
+      <DIV class="post hentry"><A name="6889563226869525804"></A> 
+      <H1>Create a RESTful Services API in PHP.</H1>
+      <DIV class="post-tag"><A class="tagstyle" href="http://www.9lessons.info/search/label/API?max-results=10" 
+      rel="tag">API </A> <A class="tagstyle" href="http://www.9lessons.info/search/label/Application?max-results=10" 
+      rel="tag">Application </A> <A class="tagstyle" href="http://www.9lessons.info/search/label/Mobile?max-results=10" 
+      rel="tag">Mobile </A> <A class="tagstyle" href="http://www.9lessons.info/search/label/php?max-results=10" 
+      rel="tag">php </A> <A class="tagstyle" href="http://www.9lessons.info/search/label/Web%20Development?max-results=10" 
+      rel="tag">Web Development </A> </DIV>
+      <DIV class="socialicons">
+      <DIV class="comment">{ <B><A class="comment-link" onclick="" href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-form">
+      65 </A></B> comments }</DIV>
+      <DIV class="socialspace">
+<SCRIPT type="in/share" data-url="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" data-counter="right"></SCRIPT>
+       </DIV>
+      <DIV class="socialspace">
+      <DIV class="g-plus" data-href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" 
+      data-annotation="bubble" data-action="share"></DIV></DIV>
+      <DIV class="socialspace"><A class="twitter-share-button" href="http://twitter.com/share" 
+      rel="nofollow" data-via="9lessons" data-url="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" 
+      data-text="Create a RESTful Services API in PHP." 
+      data-count="horizontal"></A> </DIV>
+      <DIV class="socialspace">
+      <DIV class="fb-root"></DIV><fb:send href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" 
+      font="arial"></fb:send> </DIV></DIV>
+      <DIV class="spacer"></DIV>
+      <DIV class="ads"><!-- google_ad_section_end --> 
+<SCRIPT type="text/javascript"><!--
+google_ad_client="pub-6904774409601870";
+google_ad_host="pub-1556223355139109";
+google_ad_width=300;
+google_ad_height=250;
+google_ad_format="300x250_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001+S0009+L0007";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="006699";
+google_color_url="DEDEDE";
+google_color_text="000000";
+//--></SCRIPT>
+       
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/show_ads.js" type="text/javascript"></SCRIPT>
+       <!-- google_ad_section_start --> </DIV>
+      <DIV class="post-body-n"><SPAN class="tweet"><IFRAME src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/fastbutton.htm" 
+      frameborder="0" scrolling="no" style="border: currentColor; width: 60px; height: 70px; overflow: hidden;" 
+      allowtransparency="true"></IFRAME> </SPAN> 
+      <DIV class="bigInt">Are you working with multiple devices like iPhone, 
+      Android and Web then take a look at this post that explains you how to 
+      develop a RESTful API in PHP. &nbsp;Representational state transfer (REST) 
+      is a software system for distributing the data to different kind of 
+      applications. The web service system produce status code response in JSON 
+      or XML format.</DIV><BR>
+      <DIV class="cen"><IMG class="sri" alt="Create a RESTful Services API in PHP. " 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/rest.png"></DIV><A 
+      name="more"></A><BR><A href="http://demos.9lessons.info/url.php?url=https://www.box.com/s/4e1dcc0cc2bfaf4fb695" 
+      target="_blank"><IMG align="absmiddle" style="cursor: pointer;" alt="" 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/down.png" 
+      border="0">Download Script</A><BR><BR><B>Developer</B><BR>
+      <DIV id="ravi_profile">
+      <DIV class="ravi_pic"><IMG width="80" alt="Arun Kumar Shekar" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/1319393108323_11963.jpg"></DIV>
+      <DIV class="ravi_details"><SPAN style="font: bold 15px/normal arial; color: rgb(50, 146, 220);">Arun 
+      Kumar Sekar</SPAN><BR>Engineer<BR>Chennai, INDIA</DIV>
+      <DIV class="ravi_contact"><SPAN style="color: rgb(102, 102, 102); font-size: 10px;">&nbsp;</SPAN> 
+      <BR><SPAN style="color: rgb(102, 102, 102); font-size: 10px;">Email&nbsp; 
+      :</SPAN> <A class="ravi_mailto" 
+      href="mailto:arunfairy@hotmail.com">arunfairy[at]hotmail.com</A><BR>
+      <DIV style="margin-top: 10px; float: left;">
+      <DIV style="font: bold 14px/normal arial; padding: 2px 4px; color: white; float: left; font-size-adjust: none; font-stretch: normal; background-color: rgb(26, 68, 133);"><A 
+      style="color: white; text-decoration: none;" href="https://www.facebook.com/Arunkumar.Sekaar" 
+      target="_blank" rel="nofollow">facebook</A></DIV>
+      <DIV style="font: bold 14px/normal arial; padding: 2px 4px; color: white; margin-left: 5px; float: left; font-size-adjust: none; font-stretch: normal; background-color: rgb(111, 219, 255);"><A 
+      style="color: white; text-decoration: none;" href="http://www.twitter.com/duskycode" 
+      target="_blank" 
+      rel="nofollow">twitter</A></DIV></DIV></DIV></DIV><BR><B>Database</B><BR>
+      Sample database <I>users</I> table columns user_id, user_fullname, 
+      user_email, user_password and user_status.<BR>
+      <DIV class="code">CREATE TABLE IF NOT EXISTS `<SPAN style="color: rgb(204, 0, 0);"><B>users</B></SPAN>` 
+      <BR>(<BR>`<SPAN style="color: rgb(61, 133, 198);">user_id</SPAN>` 
+      int(<SPAN style="color: rgb(204, 0, 0);">11</SPAN>) NOT NULL 
+      AUTO_INCREMENT,<BR>`<SPAN 
+      style="color: rgb(61, 133, 198);">user_fullname</SPAN>` varchar(<SPAN 
+      style="color: rgb(204, 0, 0);">25</SPAN>) NOT NULL,<BR>`<SPAN style="color: rgb(61, 133, 198);">user_email</SPAN>` 
+      varchar(<SPAN style="color: rgb(204, 0, 0);">50</SPAN>) NOT NULL,<BR>
+      `<SPAN style="color: rgb(61, 133, 198);">user_password</SPAN>` varchar(50) 
+      NOT NULL,<BR>`<SPAN style="color: rgb(61, 133, 198);">user_status</SPAN>` 
+      tinyint(1) NOT NULL DEFAULT '0',<BR><SPAN style="color: blue;">PRIMARY 
+      KEY</SPAN> (`user_id`)<BR>) <SPAN 
+      style="color: rgb(103, 78, 167);">ENGINE=InnoDB DEFAULT CHARSET=latin1 
+      AUTO_INCREMENT=1</SPAN> ;</DIV><BR><B>Rest API Class: api.php</B><BR>
+      Contains simple PHP code, here you have to modify database configuration 
+      details like database name, username and password. <BR>
+      <DIV class="code"><SPAN 
+      style="color: rgb(204, 0, 0);"><B>&lt;?php</B></SPAN><BR><SPAN style="color: rgb(56, 118, 29);">require_once</SPAN>("<SPAN 
+      style="color: rgb(204, 0, 0);">Rest.inc.php</SPAN>");<BR><BR>class <SPAN 
+      style="color: blue;">API</SPAN> <SPAN 
+      style="color: rgb(204, 0, 0);">extends</SPAN> <SPAN 
+      style="color: blue;">REST </SPAN><BR>{<BR><SPAN 
+      style="color: blue;">public</SPAN> $data = "";<BR><SPAN style="color: blue;">const 
+      </SPAN>DB_SERVER = "<SPAN style="color: blue;">localhost</SPAN>";<BR><SPAN 
+      style="color: blue;">const</SPAN> DB_USER = "<SPAN style="color: rgb(204, 0, 0);">Database_Username</SPAN>";<BR><SPAN 
+      style="color: blue;">const</SPAN> DB_PASSWORD = "<SPAN style="color: rgb(204, 0, 0);">Database_Password</SPAN>";<BR><SPAN 
+      style="color: blue;">const</SPAN> DB = "<SPAN style="color: rgb(204, 0, 0);">Database_Name</SPAN>";<BR><BR><SPAN 
+      style="color: rgb(56, 118, 29);">private </SPAN>$db = <SPAN style="color: rgb(61, 133, 198);">NULL</SPAN>;<BR><BR><SPAN 
+      style="color: rgb(56, 118, 29);">public</SPAN> function <SPAN style="color: rgb(61, 133, 198);">__construct</SPAN>()<BR>
+      {<BR>parent::<SPAN 
+      style="color: rgb(61, 133, 198);">__construct</SPAN>();<SPAN style="color: orange;">// 
+      Init parent contructor</SPAN><BR>$this-&gt;<SPAN 
+      style="color: blue;">dbConnect</SPAN>();<SPAN style="color: orange;">// 
+      Initiate Database connection</SPAN><BR>}<BR><BR><SPAN style="color: orange;">//Database 
+      connection</SPAN><BR><SPAN style="color: rgb(56, 118, 29);">private</SPAN> 
+      function <SPAN style="color: blue;">dbConnect</SPAN>()<BR>{<BR>
+      $this-&gt;db = <SPAN 
+      style="color: blue;">mysql_connect</SPAN>(self::DB_SERVER,self::DB_USER,self::DB_PASSWORD);<BR>
+      if($this-&gt;db)<BR><SPAN 
+      style="color: blue;">mysql_select_db</SPAN>(self::DB,$this-&gt;db);<BR>
+      }<BR><BR><SPAN style="color: orange;">//Public method for access 
+      api.</SPAN><BR><SPAN style="color: orange;">//This method dynmically call 
+      the method based on the query string</SPAN><BR><SPAN style="color: rgb(56, 118, 29);">public</SPAN> 
+      function <SPAN style="color: blue;">processApi</SPAN>()<BR>{<BR>$func = 
+      <SPAN style="color: blue;">strtolower</SPAN>(<SPAN 
+      style="color: blue;">trim</SPAN>(<SPAN 
+      style="color: blue;">str_replace</SPAN>("/","",<SPAN style="color: rgb(61, 133, 198);">$_REQUEST</SPAN>['rquest'])));<BR>
+      if((int)method_exists($this,$func) &gt; 0)<BR>$this-&gt;$func();<BR>
+      else<BR>$this-&gt;<SPAN style="color: blue;">response</SPAN>('',<SPAN 
+      style="color: rgb(204, 0, 0);">404</SPAN>); <BR><SPAN style="color: orange;">// 
+      If the method not exist with in this class, response would be "Page not 
+      found".</SPAN><BR>}<BR><BR><SPAN 
+      style="color: rgb(56, 118, 29);">private</SPAN> function <SPAN style="color: blue;">login</SPAN>()<BR>
+      {<BR>..............<BR>}<BR><BR><SPAN 
+      style="color: rgb(56, 118, 29);">private </SPAN>function <SPAN style="color: blue;">users</SPAN>()<BR>
+      {<BR>..............<BR>}<BR><BR><SPAN 
+      style="color: rgb(56, 118, 29);">private</SPAN> function <SPAN style="color: blue;">deleteUser</SPAN>()<BR>
+      {<BR>.............<BR>}<BR><BR><SPAN style="color: orange;">//Encode array 
+      into JSON</SPAN><BR><SPAN style="color: rgb(56, 118, 29);">private</SPAN> 
+      function<SPAN style="color: blue;"> json</SPAN>($data)<BR>{<BR>if(<SPAN 
+      style="color: blue;">is_array</SPAN>($data)){<BR>return <SPAN style="color: rgb(61, 133, 198);">json_encode</SPAN>($data);<BR>
+      }<BR>}<BR>}<BR><BR><SPAN style="color: orange;">// Initiiate 
+      Library</SPAN><BR>$api = new <SPAN style="color: blue;">API</SPAN>;<BR>
+      $api-&gt;<SPAN style="color: blue;">processApi</SPAN>();<BR><SPAN style="color: rgb(204, 0, 0);"><B>?&gt;</B></SPAN></DIV><BR><B>Login 
+      POST</B><BR>Displaying users records from the <I>users</I> table Rest API 
+      URL <I>http://localhost/rest/login/</I>. This Restful API login status 
+      works with status codes if status code  <I>200</I> login success else 
+      status code <I>204</I> shows fail message. For more status code 
+      information check <I>Rest.inc.php</I> in download script.<BR>
+      <DIV class="code"><SPAN style="color: rgb(56, 118, 29);">private</SPAN> 
+      function <SPAN style="color: blue;">login</SPAN>()<BR>{<BR><SPAN style="color: orange;">// 
+      Cross validation if the request method is POST else it will return "Not 
+      Acceptable" status</SPAN><BR>if($this-&gt;<SPAN 
+      style="color: blue;">get_request_method</SPAN>() != "<SPAN style="color: rgb(61, 133, 198);">POST</SPAN>")<BR>
+      {<BR>$this-&gt;<SPAN style="color: blue;">response</SPAN>('',<SPAN style="color: rgb(204, 0, 0);">406</SPAN>);<BR>
+      }<BR><BR>$email = $this-&gt;<SPAN 
+      style="color: rgb(204, 0, 0);">_request</SPAN>['email'];<SPAN class="Apple-tab-span" style="white-space: pre;">  </SPAN><BR>
+      $password = $this-&gt;<SPAN 
+      style="color: rgb(204, 0, 0);">_request</SPAN>['pwd'];<BR><BR><SPAN style="color: orange;">// 
+      Input validations</SPAN><BR>if(!<SPAN 
+      style="color: blue;">empty</SPAN>($email) and !<SPAN 
+      style="color: blue;">empty</SPAN>($password))<BR>{<BR>if(<SPAN style="color: blue;">filter_var</SPAN>($email, 
+      <SPAN 
+      style="color: rgb(224, 102, 102);">FILTER_VALIDATE_EMAIL</SPAN>)){<BR>$sql 
+      = <SPAN style="color: blue;">mysql_query</SPAN>("<SPAN style="color: rgb(224, 102, 102);">SELECT 
+      user_id, user_fullname, user_email FROM users WHERE user_email = 
+      '</SPAN>$email<SPAN style="color: rgb(224, 102, 102);">' AND user_password 
+      = '".</SPAN><SPAN style="color: blue;">md5</SPAN><SPAN style="color: rgb(224, 102, 102);">(</SPAN>$password<SPAN 
+      style="color: rgb(224, 102, 102);">)."' LIMIT 1</SPAN>", $this-&gt;<SPAN 
+      style="color: blue;">db</SPAN>);<BR>if(<SPAN 
+      style="color: blue;">mysql_num_rows</SPAN>($sql) &gt; 0){<BR>$result = 
+      <SPAN style="color: blue;">mysql_fetch_array</SPAN>($sql,<SPAN style="color: rgb(61, 133, 198);">MYSQL_ASSOC</SPAN>);<BR><BR><SPAN 
+      style="color: orange;">// If success everythig is good send header as "OK" 
+      and user details</SPAN><BR>$this-&gt;<SPAN 
+      style="color: blue;">response</SPAN>($this-&gt;<SPAN 
+      style="color: blue;">json</SPAN>($result), <SPAN style="color: rgb(204, 0, 0);">200</SPAN>);<BR>
+      }<BR>$this-&gt;<SPAN style="color: blue;">response</SPAN>('', <SPAN style="color: rgb(204, 0, 0);">204</SPAN>);<SPAN class="Apple-tab-span" style="white-space: pre;"> </SPAN><SPAN 
+      style="color: orange;">// If no records "No Content" status</SPAN><BR>
+      }<BR>}<BR><BR><SPAN style="color: orange;">// If invalid inputs "Bad 
+      Request" status message and reason</SPAN><BR>$error = <SPAN style="color: blue;">array</SPAN>('status' 
+      =&gt; "<SPAN style="color: rgb(204, 0, 0);">Failed</SPAN>", "msg" =&gt; 
+      "<SPAN style="color: rgb(204, 0, 0);">Invalid Email address or 
+      Password</SPAN>");<BR>$this-&gt;<SPAN 
+      style="color: blue;">response</SPAN>($this-&gt;json($error), <SPAN style="color: rgb(204, 0, 0);">400</SPAN>);<BR>
+      }</DIV><BR><B>Users GET</B><BR>Displaying users records from the 
+      <I>users</I> table Rest API URL <I>http://localhost/rest/users/</I><BR>
+      <DIV class="code"><SPAN style="color: rgb(56, 118, 29);">private</SPAN> 
+      function <SPAN style="color: blue;">users</SPAN>()<BR>{<SPAN class="Apple-tab-span" style="white-space: pre;"> </SPAN><BR>
+      // Cross validation if the request method is GET else it will return "Not 
+      Acceptable" status<BR>if($this-&gt;<SPAN 
+      style="color: blue;">get_request_method</SPAN>() != "<SPAN style="color: rgb(61, 133, 198);">GET</SPAN>")<BR>
+      {<BR>$this-&gt;<SPAN style="color: blue;">response</SPAN>('',<SPAN style="color: rgb(204, 0, 0);">406</SPAN>);<BR>
+      }<BR>$sql = <SPAN style="color: blue;">mysql_query</SPAN>("<SPAN style="color: rgb(224, 102, 102);">SELECT 
+      user_id, user_fullname, user_email FROM users WHERE user_status = 
+      1</SPAN>", $this-&gt;db);<BR>if(<SPAN 
+      style="color: blue;">mysql_num_rows</SPAN>($sql) &gt; <SPAN style="color: rgb(204, 0, 0);">0</SPAN>)<BR>
+      {<BR>$result = <SPAN style="color: blue;">array</SPAN>();<BR><SPAN style="color: rgb(56, 118, 29);">while</SPAN>($rlt 
+      = <SPAN 
+      style="color: blue;">mysql_fetch_array</SPAN>($sql,MYSQL_ASSOC))<BR>{<BR>
+      $result[] = $rlt;<BR>}<BR><SPAN style="color: orange;">// If success 
+      everythig is good send header as "OK" and return list of users in JSON 
+      format</SPAN><BR>$this-&gt;<SPAN 
+      style="color: blue;">response</SPAN>($this-&gt;<SPAN 
+      style="color: blue;">json</SPAN>($result), <SPAN style="color: rgb(204, 0, 0);">200</SPAN>);<BR>
+      }<BR>$this-&gt;<SPAN style="color: blue;">response</SPAN>('',<SPAN style="color: rgb(204, 0, 0);">204</SPAN>);<SPAN class="Apple-tab-span" style="white-space: pre;"> </SPAN><SPAN 
+      style="color: orange;">// If no records "No Content" status</SPAN><BR>
+      }</DIV><BR><B>DeleteUser</B><BR>Delete user function based on the user_id 
+      value deleting the particular record from the <I>users</I> table Rest API 
+      URL <I>http://localhost/rest/deleteUser/</I><BR>
+      <DIV class="code"><SPAN style="color: rgb(56, 118, 29);">private</SPAN> 
+      function deleteUser()<BR>{<BR><BR>if($this-&gt;<SPAN 
+      style="color: blue;">get_request_method</SPAN>() != "<SPAN style="color: rgb(224, 102, 102);">DELETE</SPAN>"){<BR>
+      $this-&gt;<SPAN style="color: blue;">response</SPAN>('',<SPAN style="color: rgb(204, 0, 0);">406</SPAN>);<BR>
+      }<BR>$id = (int)$this-&gt;_request['id'];<BR>if($id &gt; <SPAN style="color: rgb(204, 0, 0);">0</SPAN>)<BR>
+{<SPAN class="Apple-tab-span" style="white-space: pre;">    </SPAN><BR><SPAN 
+      style="color: blue;">mysql_query</SPAN>("<SPAN style="color: rgb(224, 102, 102);">DELETE 
+      FROM users WHERE user_id = </SPAN>$id");<BR>$success = <SPAN style="color: blue;">array</SPAN>('status' 
+      =&gt; "<SPAN style="color: rgb(224, 102, 102);">Success</SPAN>", "msg" 
+      =&gt; "<SPAN style="color: rgb(224, 102, 102);">Successfully one record 
+      deleted.</SPAN>");<BR>$this-&gt;<SPAN 
+      style="color: blue;">response</SPAN>($this-&gt;<SPAN 
+      style="color: blue;">json</SPAN>($success),<SPAN style="color: rgb(204, 0, 0);">200</SPAN>);<BR>
+      }<BR>else<BR>{<BR>$this-&gt;<SPAN 
+      style="color: blue;">response</SPAN>('',<SPAN style="color: rgb(204, 0, 0);">204</SPAN>);<SPAN class="Apple-tab-span" style="white-space: pre;"> </SPAN><SPAN 
+      style="color: orange;">// If no records "No Content" status</SPAN><BR>
+      }<BR>}</DIV><BR><B>Chrome Extention</B><BR>A Extention for testing PHP 
+      restful API response download here <A href="https://chrome.google.com/webstore/detail/hgmloofddffdnphfgcellkdfbfbjeloo" 
+      rel="nofollow">Advanced REST client Application</A><BR><BR><B>.htaccess 
+      code</B><BR>Rewriting code for friendly URLs. In the download code you 
+      just modify <I>htaccess.txt</I> to <I>.htaccess</I><BR>
+      <DIV class="code"><SPAN style="color: rgb(61, 133, 198);">&lt;IfModule 
+      mod_rewrite.c&gt;</SPAN><BR>RewriteEngine <SPAN style="color: rgb(224, 102, 102);">On</SPAN><BR>
+      RewriteCond %{<SPAN 
+      style="color: rgb(61, 133, 198);">REQUEST_FILENAME</SPAN>} !-d<BR>
+      RewriteCond %{<SPAN 
+      style="color: rgb(61, 133, 198);">REQUEST_FILENAME</SPAN>} !-s<BR>
+      RewriteRule ^(.*)$ <SPAN 
+      style="color: rgb(204, 0, 0);">api.php</SPAN>?<SPAN 
+      style="color: blue;">rquest=</SPAN>$1 [QSA,NC,L]<BR><BR>RewriteCond 
+      %{<SPAN style="color: rgb(61, 133, 198);">REQUEST_FILENAME</SPAN>} -d<BR>
+      RewriteRule ^(.*)$ <SPAN style="color: rgb(204, 0, 0);">api.php</SPAN> 
+      [QSA,NC,L]<BR><BR>RewriteCond %{<SPAN 
+      style="color: rgb(61, 133, 198);">REQUEST_FILENAME</SPAN>} -s<BR>
+      RewriteRule ^(.*)$ <SPAN style="color: rgb(204, 0, 0);">api.php</SPAN> 
+      [QSA,NC,L]<SPAN class="Apple-tab-span" style="white-space: pre;"> </SPAN><BR><SPAN 
+      style="color: rgb(61, 133, 198);">&lt;/IfModule&gt;</SPAN></DIV>
+      <DIV class="clearboth"></DIV></DIV>
+      <TABLE width="100%">
+        <TBODY>
+        <TR>
+          <TD width="320" valign="top">
+            <DIV style="margin-top: 15px;"><!-- google_ad_section_end --> 
+<SCRIPT type="text/javascript"><!--
+google_ad_client="pub-6904774409601870";
+google_ad_host="pub-1556223355139109";
+google_ad_width=300;
+google_ad_height=250;
+google_ad_format="300x250_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001+S0009+L0007";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="006699";
+google_color_url="DEDEDE";
+google_color_text="000000";
+//--></SCRIPT>
+             
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/show_ads.js" type="text/javascript"></SCRIPT>
+             <!-- google_ad_section_start --> </DIV></TD>
+          <TD valign="bottom">
+            <H3>Share this post</H3>
+            <DIV>
+            <DIV class="count_buttons"><A class="twitter-share-button" href="http://twitter.com/share" 
+            rel="nofollow" data-via="9lessons" data-url="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html" 
+            data-text="Create a RESTful Services API in PHP." data-count="vertical"></A> 
+            </DIV>
+            <DIV class="count_buttons"><g:plusone size="tall" href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html"></g:plusone> 
+            </DIV>
+            <DIV class="count_buttons"><IFRAME src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/tweet_button.1360366574.htm" 
+            frameborder="0" scrolling="no" style="border: currentColor; width: 60px; height: 70px; overflow: hidden;" 
+            allowtransparency="true"></IFRAME> </DIV></DIV></TD></TR></TBODY></TABLE>
+      <DIV>
+      <DIV id="related-posts">
+      <H3>Related Posts</H3><SPAN style="color: rgb(255, 255, 255); display: none;">API, 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/API.js" type="text/javascript"></SCRIPT>
+      Application, 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/Application.js" type="text/javascript"></SCRIPT>
+      Mobile, 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/Mobile.js" type="text/javascript"></SCRIPT>
+      php, 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/php.js" type="text/javascript"></SCRIPT>
+      Web Development 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/Web%2520Development.js" type="text/javascript"></SCRIPT>
+       </SPAN> 
+<SCRIPT type="text/javascript"> removeRelatedDuplicates(); printRelatedLabels();
+</SCRIPT>
+       </DIV></DIV>
+      <DIV class="spacer"></DIV></DIV>
+      <DIV id="backlinks-container" style="font-size: 12px;">
+      <DIV id="Blog1_backlinks-container"></DIV></DIV>
+      <DIV class="comments" id="comments"><A name="comments"></A> 
+      <DIV class="displaynone"><!-- google_ad_section_end --> 
+<SCRIPT type="text/javascript"><!--
+google_ad_client="pub-6904774409601870";
+google_ad_host="pub-1556223355139109";
+google_ad_width=300;
+google_ad_height=250;
+google_ad_format="300x250_as";
+google_ad_type="text_image";
+google_ad_host_channel="0001+S0009+L0007";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="006699";
+google_color_url="DEDEDE";
+google_color_text="000000";
+//--></SCRIPT>
+       
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/show_ads.js" type="text/javascript"></SCRIPT>
+       <!-- google_ad_section_start --> </DIV>
+      <DIV class="comment_box">Comments</DIV>
+      <DIV class="comment">{ <B><A class="comment-link" onclick="" href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-form" 
+      rel="nofollow">65 </A></B> comments }</DIV>
+      <DIV class="spacer"></DIV>
+      <DIV class="spacer"></DIV>
+      <DL class="avatar-comment-indent" id="comments-block" style="color: rgb(51, 51, 51); font-size: 13px;">
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8109250932171204345"><A name="comment-8109250932171204345"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>pls post more about api i want to learn that </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8109250932171204345" 
+        rel="nofollow">May 14, 2012 at 11:22 AM </A><SPAN class="item-control blog-admin pid-1992432171"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8109250932171204345" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-1-06463552301823490780" onclick="" href="http://www.blogger.com/profile/06463552301823490780" 
+        rel="nofollow"><IMG width="16" height="16" title="hima" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3144461077994206202"><A name="comment-3144461077994206202"></A> 
+        <A href="http://www.blogger.com/profile/06463552301823490780" rel="nofollow">
+        hima </A> said... </DT>
+        <DD class="comment-body">
+        <P>It's very nice , what about XML RPC </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3144461077994206202" 
+        rel="nofollow">May 14, 2012 at 11:24 AM </A><SPAN class="item-control blog-admin pid-2078756869"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3144461077994206202" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-2-06050535433292955928" onclick="" href="http://www.blogger.com/profile/06050535433292955928" 
+        rel="nofollow"><IMG width="35" height="35" title="abdul rashid" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="//lh4.googleusercontent.com/-lpcYfA1SMIA/AAAAAAAAAAI/AAAAAAAABlY/_b2R7-ONiDI/s512-c/photo.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="//lh4.googleusercontent.com/-lpcYfA1SMIA/AAAAAAAAAAI/AAAAAAAABlY/_b2R7-ONiDI/s512-c/photo.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1376533253265001094"><A name="comment-1376533253265001094"></A> 
+        <A href="http://www.blogger.com/profile/06050535433292955928" rel="nofollow">
+        abdul rashid </A> said... </DT>
+        <DD class="comment-body">
+        <P>nice </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1376533253265001094" 
+        rel="nofollow">May 14, 2012 at 11:52 AM </A><SPAN class="item-control blog-admin pid-838810680"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1376533253265001094" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://itzurkarthi.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Karthikeyan K" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-4248326355183262521"><A name="comment-4248326355183262521"></A> 
+        <A href="http://itzurkarthi.com/" rel="nofollow">Karthikeyan K </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>really usefull to me.. thanks a lot :) </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-4248326355183262521" 
+        rel="nofollow">May 14, 2012 at 12:11 PM </A><SPAN class="item-control blog-admin pid-2071183018"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=4248326355183262521" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-4-01538349907229840848" onclick="" href="http://www.blogger.com/profile/01538349907229840848" 
+        rel="nofollow"><IMG width="16" height="16" title="Roger" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5216660824014007250"><A name="comment-5216660824014007250"></A> 
+        <A href="http://www.blogger.com/profile/01538349907229840848" rel="nofollow">
+        Roger </A> said... </DT>
+        <DD class="comment-body">
+        <P>Nice. 'll give it a try </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5216660824014007250" 
+        rel="nofollow">May 14, 2012 at 12:46 PM </A><SPAN class="item-control blog-admin pid-318977472"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5216660824014007250" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://www.arywibowo.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Ary Wibowo" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1942926750279224014"><A name="comment-1942926750279224014"></A> 
+        <A href="http://www.arywibowo.com/" rel="nofollow">Ary Wibowo </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>thanks for the article :) </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1942926750279224014" 
+        rel="nofollow">May 14, 2012 at 5:06 PM </A><SPAN class="item-control blog-admin pid-608836052"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1942926750279224014" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-6-09295037469853186380" onclick="" href="http://www.blogger.com/profile/09295037469853186380" 
+        rel="nofollow"><IMG width="16" height="16" title="Seenu" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-6275613525516167620"><A name="comment-6275613525516167620"></A> 
+        <A href="http://www.blogger.com/profile/09295037469853186380" rel="nofollow">
+        Seenu </A> said... </DT>
+        <DD class="comment-body">
+        <P>That a very well but I want some more example &amp; declaration pls 
+        provide this.Thank u </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-6275613525516167620" 
+        rel="nofollow">May 14, 2012 at 6:00 PM </A><SPAN class="item-control blog-admin pid-2138634931"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=6275613525516167620" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-7762323955848962157"><A name="comment-7762323955848962157"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>Kool man nice work .. i have used this one </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-7762323955848962157" 
+        rel="nofollow">May 14, 2012 at 6:07 PM </A><SPAN class="item-control blog-admin pid-1307662529"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=7762323955848962157" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-8-09485101691051073982" onclick="" href="http://www.blogger.com/profile/09485101691051073982" 
+        rel="nofollow"><IMG width="16" height="16" title="VIRENDRA RAJPUT" alt="" 
+        src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3630982514756538085"><A name="comment-3630982514756538085"></A> 
+        <A href="http://www.blogger.com/profile/09485101691051073982" rel="nofollow">
+        VIRENDRA RAJPUT </A> said... </DT>
+        <DD class="comment-body">
+        <P>Good job ! But it would be much better if you indent the Code with 
+        Tabs, as the code above is little difficult to understand </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3630982514756538085" 
+        rel="nofollow">May 14, 2012 at 6:12 PM </A><SPAN class="item-control blog-admin pid-1403802960"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3630982514756538085" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://www.technotalkative.com/" rel="nofollow"><IMG 
+        width="16" height="16" title="TechnoTalkative" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5584890274622360743"><A name="comment-5584890274622360743"></A> 
+        <A href="http://www.technotalkative.com/" rel="nofollow">TechnoTalkative 
+        </A> said... </DT>
+        <DD class="comment-body">
+        <P>I will definitely try it out to develop demo API by myself and will 
+        try the same API for the android app development.<BR><BR>Thank for 
+        sharing detailed article. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5584890274622360743" 
+        rel="nofollow">May 14, 2012 at 6:16 PM </A><SPAN class="item-control blog-admin pid-289889600"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5584890274622360743" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-10-02058559454248595800" onclick="" 
+        href="http://www.blogger.com/profile/02058559454248595800" rel="nofollow"><IMG 
+        width="16" height="16" title="Syam kumar" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3258346441134187888"><A name="comment-3258346441134187888"></A> 
+        <A href="http://www.blogger.com/profile/02058559454248595800" rel="nofollow">
+        Syam kumar </A> said... </DT>
+        <DD class="comment-body">
+        <P>awesome article....! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3258346441134187888" 
+        rel="nofollow">May 14, 2012 at 6:20 PM </A><SPAN class="item-control blog-admin pid-1608496852"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3258346441134187888" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3145762271677839795"><A name="comment-3145762271677839795"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>amazing!! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3145762271677839795" 
+        rel="nofollow">May 14, 2012 at 7:23 PM </A><SPAN class="item-control blog-admin pid-542258393"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3145762271677839795" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://cool-on-web.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="John" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-7896234237817285366"><A name="comment-7896234237817285366"></A> 
+        <A href="http://cool-on-web.com/" rel="nofollow">John </A> said... </DT>
+        <DD class="comment-body">
+        <P>Very good tutorial! Thanks a lot! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-7896234237817285366" 
+        rel="nofollow">May 14, 2012 at 8:12 PM </A><SPAN class="item-control blog-admin pid-1454256775"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=7896234237817285366" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-13-09409147842706878636" onclick="" 
+        href="http://www.blogger.com/profile/09409147842706878636" rel="nofollow"><IMG 
+        width="16" height="16" title="Renan Fenrich" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5723697885102489492"><A name="comment-5723697885102489492"></A> 
+        <A href="http://www.blogger.com/profile/09409147842706878636" rel="nofollow">
+        Renan Fenrich </A> said... </DT>
+        <DD class="comment-body">
+        <P>Muito bom cara! Parabéns. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5723697885102489492" 
+        rel="nofollow">May 14, 2012 at 8:13 PM </A><SPAN class="item-control blog-admin pid-187099704"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5723697885102489492" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://www.lawnready.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Lawn Jobs" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-627844187406161105"><A name="comment-627844187406161105"></A> 
+        <A href="http://www.lawnready.com/" rel="nofollow">Lawn Jobs </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>Very good post as usual! Good work, Arun! :) </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-627844187406161105" 
+        rel="nofollow">May 14, 2012 at 9:32 PM </A><SPAN class="item-control blog-admin pid-583775896"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=627844187406161105" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-15-09917619075352048588" onclick="" 
+        href="http://www.blogger.com/profile/09917619075352048588" rel="nofollow"><IMG 
+        width="16" height="16" title="KFllash32" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-7892159419027974827"><A name="comment-7892159419027974827"></A> 
+        <A href="http://www.blogger.com/profile/09917619075352048588" rel="nofollow">
+        KFllash32 </A> said... </DT>
+        <DD class="comment-body">
+        <P>Could you explain how to get data? As I see in this script, in URL 
+        you send a name, that name is the name on the function. Further more 
+        _request is set to array. So you wrap everything in an array?? But then, 
+        how to extract, so you get correct function?? IM CONFUSED! And where to 
+        extend this so I can claim and API key ? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-7892159419027974827" 
+        rel="nofollow">May 14, 2012 at 9:39 PM </A><SPAN class="item-control blog-admin pid-529310455"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=7892159419027974827" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-16-08631074455497373533" onclick="" href="http://www.blogger.com/profile/08631074455497373533" 
+        rel="nofollow"><IMG width="35" height="35" title="Arun" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://4.bp.blogspot.com/-C4V9mH5TH0M/TnrY445gKfI/AAAAAAAAAVo/hpRnB64Qp_0/s45/arunkumarshekar.png"> 
+        <NOSCRIPT>&lt;img 
+        src="http://4.bp.blogspot.com/-C4V9mH5TH0M/TnrY445gKfI/AAAAAAAAAVo/hpRnB64Qp_0/s45/arunkumarshekar.png" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1703270737789042666"><A name="comment-1703270737789042666"></A> 
+        <A href="http://www.blogger.com/profile/08631074455497373533" rel="nofollow">
+        Arun </A> said... </DT>
+        <DD class="comment-body">
+        <P>@KFllash32 : This is little bit tricky but more user friendly, 
+        api(api.php) demo class wrote like this way query string as a function. 
+        But you can write your own class insteed of api.php. Validating api key 
+        or headers and all up to you. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1703270737789042666" 
+        rel="nofollow">May 15, 2012 at 1:07 AM </A><SPAN class="item-control blog-admin pid-1613250783"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1703270737789042666" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-17-09917619075352048588" onclick="" 
+        href="http://www.blogger.com/profile/09917619075352048588" rel="nofollow"><IMG 
+        width="16" height="16" title="KFllash32" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5535576393462002928"><A name="comment-5535576393462002928"></A> 
+        <A href="http://www.blogger.com/profile/09917619075352048588" rel="nofollow">
+        KFllash32 </A> said... </DT>
+        <DD class="comment-body">
+        <P>I have some experiences in this, so I figures out a way, but the 
+        Login function in the api.php will not work for most users because you 
+        also need email and username input. And something strange.<BR>You write 
+        this: $this-&gt;response('',204). And this will return nothing at all, 
+        because first param is '' (empty) and in the function you return data 
+        (data is the first param left empty). So what is the point with this 
+        one? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5535576393462002928" 
+        rel="nofollow">May 15, 2012 at 1:45 AM </A><SPAN class="item-control blog-admin pid-529310455"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5535576393462002928" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-18-13538133099420897317" onclick="" href="http://www.blogger.com/profile/13538133099420897317" 
+        rel="nofollow"><IMG width="35" height="35" title="Loganathan Natarajan" 
+        class="delayLoad" style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="//lh4.googleusercontent.com/-GlO0pLkYwgw/AAAAAAAAAAI/AAAAAAAAAAA/8Vk7omi0HOc/s512-c/photo.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="//lh4.googleusercontent.com/-GlO0pLkYwgw/AAAAAAAAAAI/AAAAAAAAAAA/8Vk7omi0HOc/s512-c/photo.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1398986377370449158"><A name="comment-1398986377370449158"></A> 
+        <A href="http://www.blogger.com/profile/13538133099420897317" rel="nofollow">
+        Loganathan Natarajan </A> said... </DT>
+        <DD class="comment-body">
+        <P>Good..article </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1398986377370449158" 
+        rel="nofollow">May 15, 2012 at 11:27 AM </A><SPAN class="item-control blog-admin pid-265967560"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1398986377370449158" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-19-00341186613990634806" onclick="" 
+        href="http://www.blogger.com/profile/00341186613990634806" rel="nofollow"><IMG 
+        width="16" height="16" title="nov" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2384865154872575199"><A name="comment-2384865154872575199"></A> 
+        <A href="http://www.blogger.com/profile/00341186613990634806" rel="nofollow">
+        nov </A> said... </DT>
+        <DD class="comment-body">
+        <P>Every nice ... big thanks if i can have more tutorial </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2384865154872575199" 
+        rel="nofollow">May 15, 2012 at 3:30 PM </A><SPAN class="item-control blog-admin pid-594310058"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2384865154872575199" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-510641244395127541"><A name="comment-510641244395127541"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>how to highlight your codes? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-510641244395127541" 
+        rel="nofollow">May 16, 2012 at 6:46 PM </A><SPAN class="item-control blog-admin pid-287140565"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=510641244395127541" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-21-11469444754764604690" onclick="" href="http://www.blogger.com/profile/11469444754764604690" 
+        rel="nofollow"><IMG width="35" height="35" title="Sam Arul Raj" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://2.bp.blogspot.com/-pKwsvqrK1qU/TZMZvG50LCI/AAAAAAAAAD4/ZG3iRT60DX4/s45/sam1.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="http://2.bp.blogspot.com/-pKwsvqrK1qU/TZMZvG50LCI/AAAAAAAAAD4/ZG3iRT60DX4/s45/sam1.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8331970421152827965"><A name="comment-8331970421152827965"></A> 
+        <A href="http://www.blogger.com/profile/11469444754764604690" rel="nofollow">
+        Sam Arul Raj </A> said... </DT>
+        <DD class="comment-body">
+        <P>yeah looks nice dude </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8331970421152827965" 
+        rel="nofollow">May 17, 2012 at 11:41 AM </A><SPAN class="item-control blog-admin pid-244758882"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8331970421152827965" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-22-00990321901464126950" onclick="" href="http://www.blogger.com/profile/00990321901464126950" 
+        rel="nofollow"><IMG width="35" height="35" title="Fareez Ahamed" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://1.bp.blogspot.com/-GuT8no-UtHI/TlyePp1YVKI/AAAAAAAAACM/HVZmXs5JT_w/s45/DSC01209.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="http://1.bp.blogspot.com/-GuT8no-UtHI/TlyePp1YVKI/AAAAAAAAACM/HVZmXs5JT_w/s45/DSC01209.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-136515921772678731"><A name="comment-136515921772678731"></A> 
+        <A href="http://www.blogger.com/profile/00990321901464126950" rel="nofollow">
+        Fareez Ahamed </A> said... </DT>
+        <DD class="comment-body">
+        <P>Your diagrams are impressive, what tool you use for that? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-136515921772678731" 
+        rel="nofollow">May 17, 2012 at 12:52 PM </A><SPAN class="item-control blog-admin pid-131805"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=136515921772678731" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://coolonweb.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Mark" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1997355015517752586"><A name="comment-1997355015517752586"></A> 
+        <A href="http://coolonweb.com/" rel="nofollow">Mark </A> said... </DT>
+        <DD class="comment-body">
+        <P>I heard PHP is not good for applying RESTfull because it does not 
+        integrate natively query functionality DELETE and PUT<BR><BR>It's 
+        really? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1997355015517752586" 
+        rel="nofollow">May 19, 2012 at 12:07 AM </A><SPAN class="item-control blog-admin pid-768160215"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1997355015517752586" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-459275873595755709"><A name="comment-459275873595755709"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>thank this blog always saves me.I love your jobs and i stay tune.I ll 
+        try this API because i have a simillar projet and this will help i think 
+        so </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-459275873595755709" 
+        rel="nofollow">May 20, 2012 at 4:33 PM </A><SPAN class="item-control blog-admin pid-388667356"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=459275873595755709" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-25-07884133158494859478" onclick="" 
+        href="http://www.blogger.com/profile/07884133158494859478" rel="nofollow"><IMG 
+        width="16" height="16" title="suji" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8059251433946515025"><A name="comment-8059251433946515025"></A> 
+        <A href="http://www.blogger.com/profile/07884133158494859478" rel="nofollow">
+        suji </A> said... </DT>
+        <DD class="comment-body">
+        <P>awesome </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8059251433946515025" 
+        rel="nofollow">May 24, 2012 at 12:41 PM </A><SPAN class="item-control blog-admin pid-654048407"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8059251433946515025" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-26-10765594937699284789" onclick="" href="http://www.blogger.com/profile/10765594937699284789" 
+        rel="nofollow"><IMG width="35" height="35" title="Ahmed Mohammed" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="//lh6.googleusercontent.com/-mCGQ5tbRap8/AAAAAAAAAAI/AAAAAAAAAAA/RN87byfVdJs/s512-c/photo.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="//lh6.googleusercontent.com/-mCGQ5tbRap8/AAAAAAAAAAI/AAAAAAAAAAA/RN87byfVdJs/s512-c/photo.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-6707020950728271329"><A name="comment-6707020950728271329"></A> 
+        <A href="http://www.blogger.com/profile/10765594937699284789" rel="nofollow">
+        Ahmed Mohammed </A> said... </DT>
+        <DD class="comment-body">
+        <P>well nice post keep it up for us to learn more... </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-6707020950728271329" 
+        rel="nofollow">June 1, 2012 at 1:46 PM </A><SPAN class="item-control blog-admin pid-824959731"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=6707020950728271329" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-27-06463552301823490780" onclick="" 
+        href="http://www.blogger.com/profile/06463552301823490780" rel="nofollow"><IMG 
+        width="16" height="16" title="hima" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-6142068058007766445"><A name="comment-6142068058007766445"></A> 
+        <A href="http://www.blogger.com/profile/06463552301823490780" rel="nofollow">
+        hima </A> said... </DT>
+        <DD class="comment-body">
+        <P>Can any one explain this line in Sample database 
+        "users"<BR><BR>ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; 
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-6142068058007766445" 
+        rel="nofollow">June 2, 2012 at 10:06 AM </A><SPAN class="item-control blog-admin pid-2078756869"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=6142068058007766445" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3807646260559126153"><A name="comment-3807646260559126153"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>What did you use in making the 
+        illustration:<BR>https://lh6.googleusercontent.com/-u9hFxEK0OS8/T6a9yHaniHI/AAAAAAAAF_Y/prEsvdWrNtI/s550/rest.png 
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3807646260559126153" 
+        rel="nofollow">June 6, 2012 at 6:49 PM </A><SPAN class="item-control blog-admin pid-2140901863"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3807646260559126153" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-29-17418084732618477326" onclick="" href="http://www.blogger.com/profile/17418084732618477326" 
+        rel="nofollow"><IMG width="35" height="35" title="Srinivas Tamada" 
+        class="delayLoad" style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://3.bp.blogspot.com/-91-w-wWXH2E/ThantHteFvI/AAAAAAAAEtQ/nVvZYRLlG0I/s45/avatar.php%253Fgravatar_id%253D7a9e87053519e0e7a21bb69d1deb6dfe"> 
+        <NOSCRIPT>&lt;img 
+        src="http://3.bp.blogspot.com/-91-w-wWXH2E/ThantHteFvI/AAAAAAAAEtQ/nVvZYRLlG0I/s45/avatar.php%253Fgravatar_id%253D7a9e87053519e0e7a21bb69d1deb6dfe" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3099303252249411093"><A name="comment-3099303252249411093"></A> 
+        <A href="http://www.blogger.com/profile/17418084732618477326" rel="nofollow">
+        Srinivas Tamada </A> said... </DT>
+        <DD class="au-body">
+        <P>Adobe illustration </P></DD>
+        <DD class="comment-footer" style="border-width: medium 2px 2px; border-style: none dashed dashed; border-color: currentColor rgb(223, 61, 130) rgb(223, 61, 130);"><SPAN 
+        class="comment-timestamp"><A title="comment permalink" href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3099303252249411093" 
+        rel="nofollow">June 6, 2012 at 9:27 PM </A><SPAN class="item-control blog-admin pid-57914092"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3099303252249411093" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://turyczech.ru/" rel="nofollow"><IMG width="16" 
+        height="16" title="vladimir" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5853270345487959350"><A name="comment-5853270345487959350"></A> 
+        <A href="http://turyczech.ru/" rel="nofollow">vladimir </A> said... 
+</DT>
+        <DD class="comment-body">
+        <P>What about security :))?<BR>Write is you can how to use also with 
+        REST OAuth.<BR>Also do you know why some API uses such 
+        url<BR>site.com/api/create.json<BR>why the use dot? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5853270345487959350" 
+        rel="nofollow">June 8, 2012 at 4:35 PM </A><SPAN class="item-control blog-admin pid-1853356304"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5853270345487959350" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-31-13513592469225504251" onclick="" 
+        href="http://www.blogger.com/profile/13513592469225504251" rel="nofollow"><IMG 
+        width="16" height="16" title="Ajay4All" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8551712088312305976"><A name="comment-8551712088312305976"></A> 
+        <A href="http://www.blogger.com/profile/13513592469225504251" rel="nofollow">
+        Ajay4All </A> said... </DT>
+        <DD class="comment-body">
+        <P>nice sir ji </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8551712088312305976" 
+        rel="nofollow">June 13, 2012 at 4:27 PM </A><SPAN class="item-control blog-admin pid-1171631356"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8551712088312305976" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://mobileapparena.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Aditya Kapoor" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5592312418229550046"><A name="comment-5592312418229550046"></A> 
+        <A href="http://mobileapparena.com/" rel="nofollow">Aditya Kapoor </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>Post more information regarding the REST modules and I want to 
+        integrate it with my application </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5592312418229550046" 
+        rel="nofollow">June 19, 2012 at 2:17 AM </A><SPAN class="item-control blog-admin pid-1543435869"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5592312418229550046" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-33-04958666823355538528" onclick="" href="http://www.blogger.com/profile/04958666823355538528" 
+        rel="nofollow"><IMG width="35" height="35" title="TATSAVIT Admin" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://4.bp.blogspot.com/-0hCA-HCVvdk/TrzPWv87AFI/AAAAAAAAADE/tlYerHCG51U/s45/footer_logo.png"> 
+        <NOSCRIPT>&lt;img 
+        src="http://4.bp.blogspot.com/-0hCA-HCVvdk/TrzPWv87AFI/AAAAAAAAADE/tlYerHCG51U/s45/footer_logo.png" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-4904866861558418688"><A name="comment-4904866861558418688"></A> 
+        <A href="http://www.blogger.com/profile/04958666823355538528" rel="nofollow">
+        TATSAVIT Admin </A> said... </DT>
+        <DD class="comment-body">
+        <P>good one </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-4904866861558418688" 
+        rel="nofollow">June 21, 2012 at 5:09 PM </A><SPAN class="item-control blog-admin pid-1879969711"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=4904866861558418688" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://sdiwc.net/conferences/2013/Dubai/paper-submission/" 
+        rel="nofollow"><IMG width="16" height="16" title="paper-submission" alt="" 
+        src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8608356973804462330"><A name="comment-8608356973804462330"></A> 
+        <A href="http://sdiwc.net/conferences/2013/Dubai/paper-submission/" rel="nofollow">
+        paper-submission </A> said... </DT>
+        <DD class="comment-body">
+        <P>nice sir.. Thank you for sharing always your ideas to us .. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8608356973804462330" 
+        rel="nofollow">June 26, 2012 at 12:10 PM </A><SPAN class="item-control blog-admin pid-1704391468"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8608356973804462330" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-35-10146783714945655610" onclick="" href="http://www.blogger.com/profile/10146783714945655610" 
+        rel="nofollow"><IMG width="35" height="35" title="Fetrian Arif Rachman Amnur" 
+        class="delayLoad" style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://2.bp.blogspot.com/-opFEGWAtWcQ/TwNViKqwxsI/AAAAAAAAA6I/5BCMprA_nXc/s45/Untitled-2.gif"> 
+        <NOSCRIPT>&lt;img 
+        src="http://2.bp.blogspot.com/-opFEGWAtWcQ/TwNViKqwxsI/AAAAAAAAA6I/5BCMprA_nXc/s45/Untitled-2.gif" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2243238258465587069"><A name="comment-2243238258465587069"></A> 
+        <A href="http://www.blogger.com/profile/10146783714945655610" rel="nofollow">
+        Fetrian Arif Rachman Amnur </A> said... </DT>
+        <DD class="comment-body">
+        <P>very nice. thanks.. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2243238258465587069" 
+        rel="nofollow">July 6, 2012 at 7:44 AM </A><SPAN class="item-control blog-admin pid-465043841"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2243238258465587069" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-36-07860077386869543397" onclick="" 
+        href="http://www.blogger.com/profile/07860077386869543397" rel="nofollow"><IMG 
+        width="16" height="16" title="Daniel Siemon" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3749854551577222886"><A name="comment-3749854551577222886"></A> 
+        <A href="http://www.blogger.com/profile/07860077386869543397" rel="nofollow">
+        Daniel Siemon </A> said... </DT>
+        <DD class="comment-body">
+        <P>i am having a problem getting Params such as email and Password for 
+        the sample Post function login()<BR>could it be htaccess?<BR>email and 
+        password keep coming in as null<BR><BR>any suggestions? I have Sample 
+        Code </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3749854551577222886" 
+        rel="nofollow">July 24, 2012 at 9:51 PM </A><SPAN class="item-control blog-admin pid-1444874684"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3749854551577222886" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-37-05074192618122936278" onclick="" href="http://www.blogger.com/profile/05074192618122936278" 
+        rel="nofollow"><IMG width="35" height="35" title="Irfan Cütcü" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="//lh6.googleusercontent.com/-4nAT9drbrvk/AAAAAAAAAAI/AAAAAAAAACE/zCDVmMXiF4I/s512-c/photo.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="//lh6.googleusercontent.com/-4nAT9drbrvk/AAAAAAAAAAI/AAAAAAAAACE/zCDVmMXiF4I/s512-c/photo.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5323257044974477652"><A name="comment-5323257044974477652"></A> 
+        <A href="http://www.blogger.com/profile/05074192618122936278" rel="nofollow">
+        Irfan Cütcü </A> said... </DT>
+        <DD class="comment-body">
+        <P>Well, this example ios really nice and working so far. I just wanna 
+        know if it's possible to request for a special user this 
+        way:<BR><BR>http://localhost/rest/users/14<BR><BR>GET: List info for 
+        user with ID of 14<BR><BR>How do I manage it with your code? Is that 
+        possible? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5323257044974477652" 
+        rel="nofollow">July 27, 2012 at 12:41 AM </A><SPAN class="item-control blog-admin pid-1024261725"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5323257044974477652" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-38-13235852663455216097" onclick="" href="http://www.blogger.com/profile/13235852663455216097" 
+        rel="nofollow"><IMG width="35" height="35" title="Jaykishan Lathigara" 
+        class="delayLoad" style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://1.bp.blogspot.com/-M8kub0pDj6Q/TtNXtA-fYGI/AAAAAAAAAI4/512DP6B3lAY/s45/72c059f8b4f7cea8e6d6252a75f782ce.jpeg"> 
+        <NOSCRIPT>&lt;img 
+        src="http://1.bp.blogspot.com/-M8kub0pDj6Q/TtNXtA-fYGI/AAAAAAAAAI4/512DP6B3lAY/s45/72c059f8b4f7cea8e6d6252a75f782ce.jpeg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-7452488689743589148"><A name="comment-7452488689743589148"></A> 
+        <A href="http://www.blogger.com/profile/13235852663455216097" rel="nofollow">
+        Jaykishan Lathigara </A> said... </DT>
+        <DD class="comment-body">
+        <P>how to pass request for deleteuser and login in url..<BR><BR>pls 
+        explain someone </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-7452488689743589148" 
+        rel="nofollow">September 3, 2012 at 2:06 PM </A><SPAN class="item-control blog-admin pid-680523600"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=7452488689743589148" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-4579827589744449673"><A name="comment-4579827589744449673"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>This is really nice and easy plugin. Can u plz tell me how to call 
+        'login' function with POST menthod. Plz it's urgent. It wil be really 
+        great if you reply ASAP </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-4579827589744449673" 
+        rel="nofollow">September 3, 2012 at 7:38 PM </A><SPAN class="item-control blog-admin pid-1065827027"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=4579827589744449673" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://www.theprogrammersguide.com/" 
+        rel="nofollow"><IMG width="16" height="16" title="Jagan" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2919579180317989123"><A name="comment-2919579180317989123"></A> 
+        <A href="http://www.theprogrammersguide.com/" rel="nofollow">Jagan </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>This tutorial is not in detail for the person who is new to API. I 
+        was trying to create an API that inserts records to my db. I know i 
+        could use this, But i'm struggling </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2919579180317989123" 
+        rel="nofollow">September 5, 2012 at 4:04 PM </A><SPAN class="item-control blog-admin pid-2113875161"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2919579180317989123" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8309859933810548961"><A name="comment-8309859933810548961"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>Hi,<BR><BR>Can anyone tell how to use this api? Do I need to call it 
+        from other application? If yes, then how?<BR></P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8309859933810548961" 
+        rel="nofollow">September 7, 2012 at 1:25 PM </A><SPAN class="item-control blog-admin pid-1707825462"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8309859933810548961" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2125409144467112598"><A name="comment-2125409144467112598"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>I always see Get request. How to change it to POST ? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2125409144467112598" 
+        rel="nofollow">September 7, 2012 at 3:27 PM </A><SPAN class="item-control blog-admin pid-1707825462"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2125409144467112598" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-43-18258840668605995939" onclick="" 
+        href="http://www.blogger.com/profile/18258840668605995939" rel="nofollow"><IMG 
+        width="16" height="16" title="Narendra" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2792618970685065819"><A name="comment-2792618970685065819"></A> 
+        <A href="http://www.blogger.com/profile/18258840668605995939" rel="nofollow">
+        Narendra </A> said... </DT>
+        <DD class="comment-body">
+        <P>Could you please post an example for inserting data using  POST.  
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2792618970685065819" 
+        rel="nofollow">September 14, 2012 at 4:43 PM </A><SPAN class="item-control blog-admin pid-715627891"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2792618970685065819" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-44-18258840668605995939" onclick="" 
+        href="http://www.blogger.com/profile/18258840668605995939" rel="nofollow"><IMG 
+        width="16" height="16" title="Narendra" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8342477894315507825"><A name="comment-8342477894315507825"></A> 
+        <A href="http://www.blogger.com/profile/18258840668605995939" rel="nofollow">
+        Narendra </A> said... </DT>
+        <DD class="comment-body">
+        <P>could you please post insert &amp; fetch data using xml with rest 
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8342477894315507825" 
+        rel="nofollow">September 14, 2012 at 4:47 PM </A><SPAN class="item-control blog-admin pid-715627891"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8342477894315507825" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3696712147783055689"><A name="comment-3696712147783055689"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>cool </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3696712147783055689" 
+        rel="nofollow">September 21, 2012 at 12:59 PM </A><SPAN class="item-control blog-admin pid-1000915787"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3696712147783055689" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1159506414554411537"><A name="comment-1159506414554411537"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>Can you explain the post methods. Means how can i post email and 
+        password <BR><BR>thanks </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1159506414554411537" 
+        rel="nofollow">October 1, 2012 at 6:17 PM </A><SPAN class="item-control blog-admin pid-1333457572"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1159506414554411537" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1362152910563474881"><A name="comment-1362152910563474881"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>thanks.... its enough to start with rest api for begginers </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1362152910563474881" 
+        rel="nofollow">October 2, 2012 at 11:33 AM </A><SPAN class="item-control blog-admin pid-1449507691"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1362152910563474881" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        onclick="" href="http://www.svnlabs.com/" rel="nofollow"><IMG width="16" 
+        height="16" title="Sandeep Verma" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8929650373857552449"><A name="comment-8929650373857552449"></A> 
+        <A href="http://www.svnlabs.com/" rel="nofollow">Sandeep Verma </A>
+         said... </DT>
+        <DD class="comment-body">
+        <P>Helpful !! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8929650373857552449" 
+        rel="nofollow">October 12, 2012 at 2:43 PM </A><SPAN class="item-control blog-admin pid-1852797766"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8929650373857552449" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-670621504531153265"><A name="comment-670621504531153265"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>Hello,<BR><BR>I am new to php, how to execute this program 
+        ?<BR><BR>Can any one help.<BR></P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-670621504531153265" 
+        rel="nofollow">October 13, 2012 at 5:55 PM </A><SPAN class="item-control blog-admin pid-1367850093"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=670621504531153265" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2868893767201147899"><A name="comment-2868893767201147899"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>what are de .ds_store and .htacces files for? regards! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2868893767201147899" 
+        rel="nofollow">October 18, 2012 at 2:30 AM </A><SPAN class="item-control blog-admin pid-774417052"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2868893767201147899" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-3696275399797503599"><A name="comment-3696275399797503599"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>To execute the program you must have php installed, and a web 
+        server.<BR><BR>I'd suggest you look for tutorials for beginning php 
+        first.  Then when you are comfortable, and know what REST is, then come 
+        back </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-3696275399797503599" 
+        rel="nofollow">October 18, 2012 at 2:46 AM </A><SPAN class="item-control blog-admin pid-830631429"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=3696275399797503599" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-52-06767459899749662460" onclick="" href="http://www.blogger.com/profile/06767459899749662460" 
+        rel="nofollow"><IMG width="35" height="35" title="Gaurav Bansal" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="//lh3.googleusercontent.com/-6MiWm6RQjAQ/AAAAAAAAAAI/AAAAAAAAAnc/KwFsH9JDmjc/s512-c/photo.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="//lh3.googleusercontent.com/-6MiWm6RQjAQ/AAAAAAAAAAI/AAAAAAAAAnc/KwFsH9JDmjc/s512-c/photo.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-8847722725957621809"><A name="comment-8847722725957621809"></A> 
+        <A href="http://www.blogger.com/profile/06767459899749662460" rel="nofollow">
+        Gaurav Bansal </A> said... </DT>
+        <DD class="comment-body">
+        <P>not working how to see result of http://localhost/rest/users/?? 
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-8847722725957621809" 
+        rel="nofollow">November 4, 2012 at 11:53 AM </A><SPAN class="item-control blog-admin pid-508990508"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=8847722725957621809" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1591264707442063568"><A name="comment-1591264707442063568"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>How to call it for testing...<BR></P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1591264707442063568" 
+        rel="nofollow">November 9, 2012 at 3:27 PM </A><SPAN class="item-control blog-admin pid-753403675"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1591264707442063568" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-54-12636276992032209310" onclick="" 
+        href="http://www.blogger.com/profile/12636276992032209310" rel="nofollow"><IMG 
+        width="16" height="16" title="luky" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-7110282099610714025"><A name="comment-7110282099610714025"></A> 
+        <A href="http://www.blogger.com/profile/12636276992032209310" rel="nofollow">
+        luky </A> said... </DT>
+        <DD class="comment-body">
+        <P>hi! <BR>can u explain me how use credential for calling REST 
+        resources after login? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-7110282099610714025" 
+        rel="nofollow">November 14, 2012 at 9:55 PM </A><SPAN class="item-control blog-admin pid-1522360694"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=7110282099610714025" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container vcard"><SPAN dir="ltr"><A class="avatar-hovercard" 
+        id="av-55-11767833060574880106" onclick="" href="http://www.blogger.com/profile/11767833060574880106" 
+        rel="nofollow"><IMG width="35" height="35" title="Joao" class="delayLoad" 
+        style="display: none;" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif" 
+        longdesc="http://4.bp.blogspot.com/-K9tnjk3K618/TdGTe3CVTJI/AAAAAAAAAAs/J7ctNr9Lk6Q/s45/09092009533.jpg"> 
+        <NOSCRIPT>&lt;img 
+        src="http://4.bp.blogspot.com/-K9tnjk3K618/TdGTe3CVTJI/AAAAAAAAAAs/J7ctNr9Lk6Q/s45/09092009533.jpg" 
+        width="35" height="35" class="photo" 
+        alt=""&gt;</NOSCRIPT></A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-9004395631915137765"><A name="comment-9004395631915137765"></A> 
+        <A href="http://www.blogger.com/profile/11767833060574880106" rel="nofollow">
+        Joao </A> said... </DT>
+        <DD class="comment-body">
+        <P>Nice job Arun :D<BR>but are you sure that the returns in 
+        json?<BR><BR>for example, i use your Rest.inc.php file for construct an 
+        api, and this file return that's<BR><BR>string(508) " object(Api)#1 (8) 
+        { ["data"]=&gt; string(0) "" ["db":"Api":private]=&gt; resource(4) of 
+        type (mysql link) ["_allow"]=&gt; array(0) { } ["_content_type"]=&gt; 
+        string(16) "application/json" ["_request"]=&gt; array(3) { 
+        ["rquest"]=&gt; string(5) "login" ["Email"]=&gt; string(15) 
+        "user1@gmail.com" ["Password"]=&gt; string(5) "12345" } ["_resp"]=&gt; 
+        array(1) { ["Id"]=&gt; string(1) "1" } ["_method":"REST":private]=&gt; 
+        string(0) "" ["_code":"REST":private]=&gt; int(200) } "<BR><BR>is json? 
+        </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-9004395631915137765" 
+        rel="nofollow">November 30, 2012 at 7:54 PM </A><SPAN class="item-control blog-admin pid-1830644406"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=9004395631915137765" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="asm" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5359129012964378898"><A name="comment-5359129012964378898"></A>
+         asm said... </DT>
+        <DD class="comment-body">
+        <P>Very helpful... I can test it in php and working perfectly. But 
+        unable to call it in windows phone.<BR>So, Can you tell me how can I 
+        call it in Windows Phone apps. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5359129012964378898" 
+        rel="nofollow">December 9, 2012 at 9:59 PM </A><SPAN class="item-control blog-admin pid-886429719"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5359129012964378898" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-57-16512309839126529855" onclick="" 
+        href="http://www.blogger.com/profile/16512309839126529855" rel="nofollow"><IMG 
+        width="16" height="16" title="Neeraj Jain" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-6004498512902576037"><A name="comment-6004498512902576037"></A> 
+        <A href="http://www.blogger.com/profile/16512309839126529855" rel="nofollow">
+        Neeraj Jain </A> said... </DT>
+        <DD class="comment-body">
+        <P>Helpful for beginners. Great!!! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-6004498512902576037" 
+        rel="nofollow">December 13, 2012 at 2:36 PM </A><SPAN class="item-control blog-admin pid-1270566845"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=6004498512902576037" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><A 
+        class="avatar-hovercard" id="av-58-15673946558770723673" onclick="" 
+        href="http://www.blogger.com/profile/15673946558770723673" rel="nofollow"><IMG 
+        width="16" height="16" title="Rodger" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/b16-rounded.gif"> 
+        </A></SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-2259401860935571903"><A name="comment-2259401860935571903"></A> 
+        <A href="http://www.blogger.com/profile/15673946558770723673" rel="nofollow">
+        Rodger </A> said... </DT>
+        <DD class="comment-body">
+        <P>Make sure to enable mod_rewrite in httpd.conf </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-2259401860935571903" 
+        rel="nofollow">December 18, 2012 at 8:43 AM </A><SPAN class="item-control blog-admin pid-765737801"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=2259401860935571903" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="eureckou" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-9141374983135014336"><A name="comment-9141374983135014336"></A>
+         eureckou said... </DT>
+        <DD class="comment-body">
+        <P>I am getting this error:<BR><B>Notice</B>:  Undefined index: rquest 
+        in <B>C:\server\www\jrserver.dev\public_html\rest\api.php</B> on line 
+        <B>69</B><BR></P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-9141374983135014336" 
+        rel="nofollow">January 4, 2013 at 12:12 PM </A><SPAN class="item-control blog-admin pid-1755936737"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=9141374983135014336" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-4520043107008732335"><A name="comment-4520043107008732335"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>Thanks for the info ! </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-4520043107008732335" 
+        rel="nofollow">January 15, 2013 at 11:11 AM </A><SPAN class="item-control blog-admin pid-923938661"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=4520043107008732335" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Ravi L" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1404316079329890416"><A name="comment-1404316079329890416"></A>
+         Ravi L said... </DT>
+        <DD class="comment-body">
+        <P>@eureckou: you should pass the parameter rquest and value to 
+        that.<BR>for example. "http://localhost/rest/api.php?rquest=users" so 
+        that your rquest parameter will be passed and the value will be accessed 
+        in processApi().  Then the action will be taken according to your 
+        request. </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1404316079329890416" 
+        rel="nofollow">January 18, 2013 at 1:08 PM </A><SPAN class="item-control blog-admin pid-1340064465"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1404316079329890416" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Code Poet" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-1852602908516512816"><A name="comment-1852602908516512816"></A>
+         Code Poet said... </DT>
+        <DD class="comment-body">
+        <P>Thanks for sharing </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-1852602908516512816" 
+        rel="nofollow">January 20, 2013 at 11:48 AM </A><SPAN class="item-control blog-admin pid-629366446"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=1852602908516512816" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Rolf" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-5646058249029264548"><A name="comment-5646058249029264548"></A>
+         Rolf said... </DT>
+        <DD class="comment-body">
+        <P>Hi, thanks for that good.. it took me a while to find any good and 
+        easy to use examples..<BR><BR>One question.. When I use to Chrome 
+        extension to test the web service, the login and deleteUser function is 
+        not working.. During the debbuging I found out that $_GET and $_POST is 
+        just empty.. any idea why that happens? </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-5646058249029264548" 
+        rel="nofollow">February 1, 2013 at 4:05 AM </A><SPAN class="item-control blog-admin pid-1035902652"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=5646058249029264548" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> </SPAN></DD>
+        <DIV>
+        <DIV class="avatar-image-container avatar-stock"><SPAN dir="ltr"><IMG 
+        width="16" height="16" title="Anonymous" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/blank.gif"> 
+        </SPAN></DIV></DIV>
+        <DT class="comment-author" id="comment-4004688354212048432"><A name="comment-4004688354212048432"></A>
+         Anonymous said... </DT>
+        <DD class="comment-body">
+        <P>plz tell me form where we can post the value and how can get post 
+        value within function.... </P></DD>
+        <DD class="comment-footer"><SPAN class="comment-timestamp"><A title="comment permalink" 
+        href="http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html#comment-4004688354212048432" 
+        rel="nofollow">February 1, 2013 at 12:21 PM </A><SPAN class="item-control blog-admin pid-935119818"><A 
+        title="Delete Comment" href="http://www.blogger.com/delete-comment.g?blogID=992226187759619576&amp;postID=4004688354212048432" 
+        rel="nofollow"><SPAN 
+        class="delete-comment-icon">&nbsp;</SPAN></A></SPAN> 
+      </SPAN></DD></DL></DIV>
+      <DIV class="comment-form"><A name="comment-form"></A> 
+      <H4 id="comment-post-message">Post a Comment</H4>
+      <P></P><A id="comment-editor-src" href="http://www.blogger.com/comment-iframe.g?blogID=992226187759619576&amp;postID=6889563226869525804"></A> 
+      <IFRAME width="100%" height="275" class="blogger-iframe-colorize" id="comment-editor" 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/like.htm" 
+      frameborder="0" scrolling="no" allowtransparency="true"></IFRAME> 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/1512995807-iframe_colorizer.js" type="text/javascript"></SCRIPT>
+       </DIV><!-- google_ad_section_end --> </DIV>
+      <DIV class="blog-pager" id="blog-pager"><A title="Newer Post" class="blog-pager-newer-link" 
+      id="Blog1_blog-pager-newer-link" href="http://www.9lessons.info/2012/05/login-with-instagram-php.html" 
+      rel="nofollow">Newer Post </A><A title="Older Post" class="blog-pager-older-link" 
+      id="Blog1_blog-pager-older-link" href="http://www.9lessons.info/2012/04/facebook-style-emotions-jquery-plugin.html" 
+      rel="nofollow">Older Post </A><A title="Home" class="home-link" href="http://www.9lessons.info/" 
+      rel="nofollow">Home </A></DIV>
+      <DIV class="clear"></DIV></DIV></DIV></DIV></TD>
+    <TD width="300" id="sideside" valign="top">
+      <DIV class="side_box">
+      <DIV class="section-links" id="aboutme"><IMG title="Srinivas Tamada" 
+      class="face" alt="Srinivas Tamada" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/Srinivas_Tamada.jpg"> 
+      <SPAN class="plusplus"><A style="text-decoration: none;" href="https://plus.google.com/104100007347037324968?prsrc=3"><IMG 
+      class="plusimg" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/gplus-32.png"></A></SPAN> 
+      <SPAN style="font-size: 13px; font-weight: bold;"><A class="nametitle" 
+      href="https://plus.google.com/104100007347037324968?rel=author" rel="author me">Srinivas 
+      Tamada</A></SPAN><BR>Entrepreneur, Blogger <BR> Thinker -  I love the Web 
+      <BR> CHENNAI - INDIA <BR><A style="color: rgb(0, 102, 153); font-size: 12px; text-decoration: none;" 
+      href="mailto:srinivas@9lessons.info" rel="nofollow">srinivas [at] 
+      9lessons.info</A> <A title="Srinivas Tamada" style="color: rgb(242, 242, 242);" 
+      href="http://www.9lessons.info/p/about.html" rel="author">more</A> 
+      <DIV style="margin-top: 6px;"><A href="http://www.facebook.com/srinivas.tamada" 
+      target="_blank"><IMG alt="Srinivas Tamada Facebook Profile" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/takealook.png" 
+      border="0"></A> </DIV></DIV>
+      <DIV class="section-links">
+      <DIV style="margin-bottom: 6px;">Subscribe my updates via <B>Email </B> 
+      </DIV>
+      <DIV>
+      <FORM action="http://feedburner.google.com/fb/a/mailverify" 
+      method="post"><INPUT name="email" class="feedinput" style="border: 1px solid rgb(0, 0, 0); width: 170px; margin-right: 4px;" 
+      type="text"><INPUT name="uri" type="hidden" value="9lesson"><INPUT name="loc" 
+      type="hidden" 
+value="en_US"><INPUT class="gsc-search-button" type="submit" value="Sign Up"></FORM></DIV>
+      <DIV style="margin-top: 8px;"><A class="twitter-follow-button" href="http://twitter.com/9lessons" 
+      data-width="256px" data-show-count="true">Follow @9lessons</A></DIV>
+      <DIV style="margin: 0px 0px 5px;">
+      <DIV style="width: 90px; float: left;"><A title="9lessons feed" href="http://feeds2.feedburner.com/9lesson"><IMG 
+      width="88" height="26" style="border: 0px currentColor; margin-top: 6px; margin-right: 10px;" 
+      alt="feed" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/9lesson.gif"></A> 
+      </DIV>
+      <DIV style="width: 150px; margin-top: 2px; margin-left: 20px; float: left;"><IFRAME 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/create-restful-services-api-in-php.htm" 
+      frameborder="0" scrolling="no" style="border: currentColor; width: 160px; height: 25px; overflow: hidden; margin-top: 5px;" 
+      allowtransparency="true"></IFRAME> </DIV></DIV>
+      <DIV style="clear: both;"></DIV></DIV>
+      <DIV class="section-links">
+      <DIV id="buysellads_div" style="height: 395px; display: block;">
+      <DIV class="bsarocks bsap_ce1cf9e0a1e44bafe65c4664385c08d7" id="bsap_1245205"></DIV></DIV>
+      <DIV style="margin: 5px 0px 5px 2px; font-weight: bold;"><A style="color: rgb(0, 102, 153);" 
+      rel="nofollow" hrer="http://webhostinggeeks.com/">Web Hosting for 
+      GEEKs</A> </DIV></DIV>
+      <DIV class="section-links">
+      <H3>Like Me </H3><IFRAME class="fblikeme" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/sharebutton.htm" 
+      frameborder="0" scrolling="no" allowtransparency="true"></IFRAME></DIV>
+      <DIV class="section-links" id="spon" style="display: none;">
+      <DIV>
+      <DIV class="section" id="addsections5">
+      <DIV class="widget HTML" id="HTML1">
+      <DIV class="widget-content"><!-- BuySellAds.com Ad Code --> 
+<SCRIPT type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</SCRIPT>
+       <!-- END BuySellAds.com Ad Code --> </DIV>
+      <DIV class="clear"></DIV><SPAN class="widget-item-control"><SPAN class="item-control blog-admin"><A 
+      title="Edit" class="quickedit" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML1"));' 
+      href="http://www.blogger.com/rearrange?blogID=992226187759619576&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=addsections5" 
+      target="configHTML1"><IMG width="18" height="18" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/icon18_wrench_allbkg.png"> 
+      </A> </SPAN> </SPAN> 
+      <DIV class="clear"></DIV></DIV></DIV></DIV></DIV>
+      <DIV class="section-links"><A href="http://wall.9lessons.info/" rel="nofollow"><IMG 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/smallbanner.gif" 
+      border="0"></A> </DIV>
+      <DIV class="section-links">
+      <H3>Most Popular Posts</H3>
+      <DIV class="section" id="addsections7">
+      <DIV class="widget PopularPosts" id="PopularPosts1">
+      <DIV class="widget-content popular-posts">
+      <UL>
+        <LI><A href="http://www.9lessons.info/2011/02/login-with-facebook-and-twitter.html">Login 
+        with Facebook and Twitter</A> </LI>
+        <LI><A href="http://www.9lessons.info/2011/08/ajax-image-upload-without-refreshing.html">Ajax 
+        Image Upload without Refreshing Page using Jquery.</A> </LI>
+        <LI><A href="http://www.9lessons.info/2009/03/upload-and-resize-image-with-php.html">Upload 
+        and Resize an Image with PHP</A> </LI>
+        <LI><A href="http://www.9lessons.info/2009/09/pagination-with-jquery-mysql-and-php.html">Pagination 
+        with jQuery, MySQL and PHP.</A> </LI>
+        <LI><A href="http://www.9lessons.info/2009/09/php-login-page-example.html">PHP 
+        Login Page Example.</A> </LI>
+        <LI><A href="http://www.9lessons.info/2011/05/facebook-wall-script-with-php-and.html">Facebook 
+        Wall Script 3.0 with PHP and Jquery</A> </LI>
+        <LI><A href="http://www.9lessons.info/2011/07/login-with-google-account.html">Login 
+        with Google Account OpenID</A> </LI>
+        <LI><A href="http://www.9lessons.info/2009/07/auto-load-refresh-every-10-seconds-with.html">Auto 
+        Load and Refresh  Div every 10 Seconds with jQuery.</A> </LI>
+        <LI><A href="http://www.9lessons.info/2010/10/pagination-with-jquery-php-ajax-and.html">Pagination 
+        with Jquery, PHP , Ajax and MySQL.</A> </LI></UL>
+      <DIV class="clear"></DIV><SPAN class="widget-item-control"><SPAN class="item-control blog-admin"><A 
+      title="Edit" class="quickedit" onclick='return _WidgetManager._PopupConfig(document.getElementById("PopularPosts1"));' 
+      href="http://www.blogger.com/rearrange?blogID=992226187759619576&amp;widgetType=PopularPosts&amp;widgetId=PopularPosts1&amp;action=editWidget&amp;sectionId=addsections7" 
+      target="configPopularPosts1"><IMG width="18" height="18" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/icon18_wrench_allbkg.png"> 
+      </A> </SPAN> </SPAN> 
+      <DIV class="clear"></DIV></DIV></DIV></DIV></DIV>
+      <DIV class="section-links"><A href="http://www.fglogin.com/" rel="nofollow"><IMG 
+      alt="Facebook and Google Login" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/BannerNew.gif" 
+      border="0"></A> </DIV>
+      <DIV class="section-links" style="padding-right: 7px; margin-bottom: 10px;">
+      <H3>Categories</H3>
+      <DIV class="spacer"></DIV>
+      <DIV class="site-reviews" style="width: 45%; float: left;">
+      <UL>
+        <LI><A href="http://www.9lessons.info/search/label/Facebook?max-results=4" 
+        rel="nofollow"><B>Facebook</B></A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/Database?max-results=4" 
+        rel="nofollow">Database</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/jQuery?max-results=4" 
+        rel="nofollow"><B>jQuery</B></A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/google?max-results=4" 
+        rel="nofollow">Google</A></LI>
+        <LI><A 
+        href="http://www.9lessons.info/2008/08/table-of-contents.html">Tutorials</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/WebDesign?max-results=4" 
+        rel="nofollow">Web Design</A></LI></UL></DIV>
+      <DIV class="site-reviews" style="width: 45%; float: right;">
+      <UL>
+        <LI><A href="http://www.9lessons.info/search/label/Jsp?max-results=4" 
+        rel="nofollow">JSP</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/Technology?max-results=4" 
+        rel="nofollow">Technology</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/Twitter%20API?max-results=4" 
+        rel="nofollow"><B>Twitter API</B>(new)</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/Mysql?max-results=4" 
+        rel="nofollow">MySQL</A></LI>
+        <LI><A href="http://www.9lessons.info/search/label/Ajax?max-results=4" 
+        rel="nofollow"><B>Ajax</B></A></LI>
+        <LI><A href="http://www.9lessons.info/2008/08/most-popular-articles.html"><B>Most 
+        Popular</B></A></LI></UL></DIV>
+      <DIV class="spacer" style="height: 1px;"></DIV></DIV>
+      <DIV class="section-links">
+      <H3>Recent Posts</H3>
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/9lesson.js" type="text/javascript"></SCRIPT>
+      </DIV>
+      <DIV class="people shade" style="margin-bottom: 10px;">
+      <H3>People Says</H3>@<A title="9lessons twitter" style="color: rgb(0, 102, 153);" 
+      href="http://twitter.com/9lessons">9lessons</A> thank you for the great 
+      tutorials, we truly appreciate your contributions to the design 
+      community.<BR><BR><A style="color: rgb(0, 102, 153);" href="http://twitter.com/smashingmag/status/3509373737" 
+      rel="nofollow">Smashing Magazine</A></DIV></DIV>
+      <DIV id="googleplus" style="margin-top: 5px;"><!-- Place this tag where you want the badge to render --> 
+      <g:plus href="https://plus.google.com/101036624217330953547" width="300" 
+      theme="light" height="131"></g:plus> </DIV>
+      <DIV class="twitter_list" id="twitter_div">
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/widget.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+new TWTR.Widget({version: 2,
+type: 'profile',
+rpp: 5,
+interval: 6000,
+width: 'auto',
+height: 300,
+theme: {shell: {background: '#333333',
+color: '#f2f4f5'},
+tweets: {background: '#333333',
+color: '#ffffff',
+links: '#80c9e5'}},
+features: {scrollbar: false,
+loop: false,
+live: false,
+hashtags: false,
+timestamp: false,
+avatars: false,
+behavior: 'all'}}).render().setUser('9lessons').start();</SCRIPT>
+      </DIV>
+      <DIV style="margin-top: 10px;">
+      <DIV class="section" id="addsections31">
+      <DIV class="widget HTML" id="HTML2">
+      <DIV class="widget-content">
+      <DIV style="margin: 10px 0px;">
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/fpi.js" type="text/javascript"></SCRIPT>
+       </DIV>
+      <DIV>
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/fpi(1).js" type="text/javascript"></SCRIPT>
+       </DIV></DIV>
+      <DIV class="clear"></DIV><SPAN class="widget-item-control"><SPAN class="item-control blog-admin"><A 
+      title="Edit" class="quickedit" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML2"));' 
+      href="http://www.blogger.com/rearrange?blogID=992226187759619576&amp;widgetType=HTML&amp;widgetId=HTML2&amp;action=editWidget&amp;sectionId=addsections31" 
+      target="configHTML2"><IMG width="18" height="18" alt="" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/icon18_wrench_allbkg.png"> 
+      </A> </SPAN> </SPAN> 
+      <DIV class="clear"></DIV></DIV></DIV></DIV></TD></TR></TBODY></TABLE><!-- google ads --> <!--google end --> 
+</DIV><!-- Footer part --> 
+<DIV id="container-footer2">
+<DIV id="container-footer" style="text-align: center;">
+<DIV class="counterstat">
+<SCRIPT type="text/javascript">
+var sc_project=3967696; 
+var sc_invisible=0; 
+var sc_partition=46; 
+var sc_click_stat=1; 
+var sc_security="6979b175"; 
+var sc_text=1; 
+</SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/counter.js" type="text/javascript"></SCRIPT>
+<NOSCRIPT>&lt;div class='statcounter'&gt;&lt;img alt='free html hit counter' 
+class='statcounter' 
+src='http://c.statcounter.com/3967696/0/6979b175/0/'/&gt;&lt;/div&gt;</NOSCRIPT></DIV>
+<DIV id="footer">
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD><SPAN style="float: left;"><A title="Egglabs" href="http://egglabs.in/"><IMG 
+      alt="egglabs" src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/smallegglabs.png" 
+      border="0"></A></SPAN> <SPAN class="cpright">© 2009-2013 9lessons.info. 
+      All rights reserved the content is copyrighted to Srinivas Tamada  - <A 
+      title="9lessons Advertisement" href="http://www.9lessons.info/2009/05/advertising-on-9lessons.html">Advertise</A> 
+      </SPAN> </TD>
+    <TD align="right"><SPAN style="float: right;"><A href="http://creativecommons.org/licenses/by-nc-nd/3.0/" 
+      rel="license"><IMG style="border-width: 0px;" alt="Creative Commons License" 
+      src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/80x15.png"></A> 
+      </SPAN> </TD></TR></TBODY></TABLE></DIV></DIV></DIV><!-- Footer end --> 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/urchin.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+_uacct = "UA-4783102-2";
+urchinTracker();
+</SCRIPT>
+ <!-- ads end --> 
+<SCRIPT type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10999810-1");
+pageTracker._trackPageview();
+} catch(err) {}</SCRIPT>
+ <!--Page Navigation Starts--> <!--Page Navigation Ends --> 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/all.js"></SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/plusone(1).js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/widgets.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/in.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/jsapi.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+   google.load('search', '1');
+  google.setOnLoadCallback(function(){
+    var customSearchControl = new google.search.CustomSearchControl();
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setSearchFormRoot('cse-search-form');
+    customSearchControl.enableAds('pub-6904774409601870');
+    customSearchControl.draw('cse', options);
+  }, true);
+</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+		if (top.location!= self.location) {
+			top.location = self.location
+		}
+
+FB.init({
+appId:'110166500203',
+cookie:true,
+status:true,
+xfbml:true
+});
+
+function FacebookInviteFriends()
+{
+FB.ui({
+method: 'apprequests',
+message: '9lessons Programming Blog Topics focused on Web Programming.'
+});
+}
+</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+window.___gcfg = {lang: 'en'};
+(function() 
+{var po = document.createElement("script");
+po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(po, s);
+})();</SCRIPT>
+ 
+<DIV id="fb-root"></DIV>
+<SCRIPT type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</SCRIPT>
+
+<SCRIPT src="Create%20a%20RESTful%20Services%20API%20in%20PHP__files/433984379-widgets.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '992226187759619576';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d992226187759619576','//www.9lessons.info/2012/05/create-restful-services-api-in-php.html','992226187759619576');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '992226187759619576', 'bloggerUrl': 'http://www.blogger.com', 'title': '9lessons Programming Blog', 'pageType': 'item', 'url': 'http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html', 'canonicalUrl': 'http://www.9lessons.info/2012/05/create-restful-services-api-in-php.html', 'canonicalHomepageUrl': 'http://www.9lessons.info/', 'homepageUrl': 'http://www.9lessons.info/', 'blogspotFaviconUrl': 'http://www.9lessons.info/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'Create a RESTful Services API in PHP.', 'pageTitle': '9lessons Programming Blog: Create a RESTful Services API in PHP.', 'encoding': 'UTF-8', 'locale': 'en', 'localeLanguage': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\429lessons Programming Blog - Atom\42 href\75\42http://www.9lessons.info/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\429lessons Programming Blog - RSS\42 href\75\42http://www.9lessons.info/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\429lessons Programming Blog - Atom\42 href\75\42http://www.blogger.com/feeds/992226187759619576/posts/default\42 /\76\n\74link rel\75\42EditURI\42 type\75\42application/rsd+xml\42 title\75\42RSD\42 href\75\42http://www.blogger.com/rsd.g?blogID\75992226187759619576\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\429lessons Programming Blog - Atom\42 href\75\42http://www.9lessons.info/feeds/6889563226869525804/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'postImageThumbnailUrl': 'https://lh6.googleusercontent.com/-u9hFxEK0OS8/T6a9yHaniHI/AAAAAAAAF_Y/prEsvdWrNtI/s72-c/rest.png', 'imageSrcTag': '\74link rel\75\42image_src\42 href\75\42https://lh6.googleusercontent.com/-u9hFxEK0OS8/T6a9yHaniHI/AAAAAAAAF_Y/prEsvdWrNtI/s72-c/rest.png\42 /\76\n', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var a\75window,b\75\42jstiming\42,d\75\42tick\42;var e\75function(c){this.t\75{};this.tick\75function(c,p,h){h\75void 0!\75h?h:(new Date).getTime();this.t[c]\75[h,p]};this[d](\42start\42,null,c)},f\75new e;a.jstiming\75{Timer:e,load:f};if(a.performance\46\46a.performance.timing){var g\75a.performance.timing,j\75a[b].load,k\75g.navigationStart,l\75g.responseStart;0\74k\46\46l\76\75k\46\46(j[d](\42_wtsrt\42,void 0,k),j[d](\42wtsrt_\42,\42_wtsrt\42,l),j[d](\42tbsd_\42,\42wtsrt_\42))}\ntry{var m\75null;a.chrome\46\46a.chrome.csi\46\46(m\75Math.floor(a.chrome.csi().pageT),j\46\0460\74k\46\46(j[d](\42_tbnd\42,void 0,a.chrome.csi().startE),j[d](\42tbnd_\42,\42_tbnd\42,k)));null\75\75m\46\46a.gtbExternal\46\46(m\75a.gtbExternal.pageT());null\75\75m\46\46a.external\46\46(m\75a.external.pageT,j\46\0460\74k\46\46(j[d](\42_tbnd\42,void 0,a.external.startE),j[d](\42tbnd_\42,\42_tbnd\42,k)));m\46\46(a[b].pt\75m)}catch(n){};a.tickAboveFold\75function(c){var i\0750;if(c.offsetParent){do i+\75c.offsetTop;while(c\75c.offsetParent)}c\75i;750\76\75c\46\46a[b].load[d](\42aft\42)};var q\75!1;function r(){q||(q\75!0,a[b].load[d](\42firstScrollTime\42))}a.addEventListener?a.addEventListener(\42scroll\42,r,!1):a.attachEvent(\42onscroll\42,r);\n })();\74/script\076', 'mobileHeadScript': '', 'adsenseClientId': 'pub-6904774409601870', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/415c4782c5b3e5f8', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js'}}, {'name': 'skin', 'data': {'vars': {}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '/?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '/?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '/?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '/?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '/?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '/?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '/?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main_s', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': '//www.blogger.com/static/v1/jsbin/713992354-lbx.js', 'lightboxCssUrl': '//www.blogger.com/static/v1/v-css/228702327-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'addsections5', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense2', 'addsections3', null, document.getElementById('AdSense2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'addsections31', null, document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'addsections7', null, document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'addsectionsFooter', null, document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList1', 'null', null, document.getElementById('PageList1'), {'title': 'Pages', 'links': [{'href': 'http://www.9lessons.info/', 'title': 'Home', 'isCurrentPage': false}, {'href': 'http://www.9lessons.info/p/request-tutorials-here.html', 'title': 'Request Tutorials Here !', 'isCurrentPage': false}, {'href': 'http://www.9lessons.info/p/about.html', 'title': 'About Srinivas Tamada', 'isCurrentPage': false}], 'mobile': false}, 'displayModeFull'));
+</SCRIPT>
+ </BODY></HTML>

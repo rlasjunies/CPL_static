@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="/res/css/grid-listview.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+<title>Corinne Païre Lasjunies's website</title>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19696580-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+    <script type="text/javascript">
+        $(document)
+        .on("pageinit", "#paintings",
+                function () {
+                    $(".painting")
+                            .on(
+                                    "click",
+                                    function () {
+                                        var target = $(this),
+                                        titre = target.find("h2").html(),
+                                        description = target.find("p").html(),
+                                        //identifiant = target.attr("id"),
+                                        identifiant = "1234",
+                                        popupid = "popup-" + identifiant,
+                                        imgsrc = target.find("img").attr("src"),
+                                        closebtn = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-btn-right">Close</a>',
+                                        header = '<div data-role="header"></div>',
+                                        img = '<img src="' + imgsrc + '" id="img-1234" class="photo" onclick="$("#popup-1234").popup("close");">',
+
+                                        popup = '<div data-role="popup" id="' + popupid
+                                                + '" data-short="'
+                                                + popupid
+                                                + '" data-theme="none" data-overlay-theme="a" data-corners="false" data-tolerance="15">'
+                                                + closebtn
+                                                + header
+                                                + img
+                                                + '</div>';
+                                        // Create the popup. Trigger
+                                        // "pagecreate" instead of "create"
+                                        // because currently the framework
+                                        // doesn't bind the enhancement of
+                                        // toolbars to the "create" event
+                                        // (js/widgets/page.sections.js).
+
+
+
+                                        $.mobile.activePage.append(popup).trigger("pagecreate");
+                                        // Wait with opening the popup until the
+                                        // popup image has been loaded in the
+                                        // DOM.
+                                        // This ensures the popup gets the
+                                        // correct size and position
+                                        $(".photo", "#" + popupid)
+                                                .load(
+                                                        function () {
+                                                            var height = $(this)
+                                                                    .height(), width = $(
+                                                                    this)
+                                                                    .width();
+                                                            // Set height and
+                                                            // width attribute
+                                                            // of the image
+                                                            $(this)
+                                                                    .attr(
+                                                                            {
+                                                                                "height": height,
+                                                                                "width": width
+                                                                            });
+                                                            // Open the popup
+                                                            $("#" + popupid).popup("open");
+                                                            // Clear the
+                                                            // fallback
+                                                            clearTimeout(fallback);
+                                                        });
+                                        // Fallback in case the browser doesn't
+                                        // fire a load event
+                                        var fallback = setTimeout(function () {
+                                            $("#" + popupid).popup("open");
+                                        }, 2000);
+                                    });
+                    // Set a max-height to make large images shrink to fit the
+                    // screen.
+                    $(document).on(
+                            "popupbeforeposition",
+                            ".ui-popup",
+                            function () {
+                                // 68px: 2 * 15px for top/bottom tolerance, 38px for the header.
+                                var maxHeight = $(window).height() - 68 + "px";
+                                $("img.photo", this).css("max-height",
+                                        maxHeight);
+                            });
+
+
+                    // Remove the popup after it has been closed to manage DOM size
+                    $(document).on("popupafterclose", ".ui-popup", function () {
+                        $(this).remove();
+                    });
+                });</script>
+
+</head>
+<body>
+<div class="my-page"></div>
+	<div data-role="page" data-theme="a" >
+		<div data-role="header" id="CPLHeader" data-position="fixed" data-id="CPL">
+			<span id="log"></span>
+			<h1>Corinne Païre Lasjunies's website</h1>
+			<a href="/emailMe.html" data-rel="dialog" data-transition="slide" class="ui-btn-right">email Me</a>
+		</div>
+		<!-- /header -->
+		<div data-role="content" style="margin: auto; text-align: center; width: 80%; max-width: 1000px; min-width: 700px;" >
+			<div style="margin: 10px;">
+				<div style="float: left; margin: 0px 10px 3px 0px;">
+					<img src="./aboutme/P1020286NB.600_450.png" width="600" height="450">
+				</div>
+				<!-- <div style="text-align:center">
+<img width="200" height="200" src="/res/images/Under-Construction.gif"/>
+</div>-->
+				<div style="text-align: justify;">
+					<p>Mon travail s'appuie sur le développement d'un dialogue entre la matière couchée sur la toile et moi même. J'exprime la profondeur, l'ombre, la lumière à l'aide de masses colorées
+						abstraites.</p>
+					<p>Ma technique est mixte. J'utilise l'acrylique et le café soluble.</p>
+					<p>L'acrylique permet des effets de matière et donne la possibilité de contrastes mat / brillant, et permet surtout, la réaction du café soluble, que j'utilise dans tout mon travail car il
+						donne vie à la matière, en faisant réagir l'acrylique.</p>
+					<p>C'est une sorte de lutte permanente entre ces deux matières.</p>
+					<p>C'est en étudiant leur réactions au fur et à mesure de mon travail que j'ai mis au point cette technique.</p>
+					<p>L'interaction ce ces deux matières créent des fissures, des craquelures, une matière changeante et vibrante, qui ne cesse de se transformer.</p>
+				</div>
+			</div>
+		</div>
+		<!-- /content -->
+		<div data-role="footer" data-id="CPL-footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="/index.html" data-icon="info" data-iconpos="left">Biographie</a></li>
+					<li><a href="/gallery.html" data-iconpos="left" data-icon="grid">Galerie</a></li>
+					<li><a href="/interiorDesign/interiordesign.html" data-icon="home" data-iconpos="left">Architecture d'intérieur</a></li>
+					<li><a href="/events/events.html" data-icon="alert" data-iconpos="left">Evènements</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /page -->
+</body>
+</html>
